@@ -39,20 +39,3 @@ int peep(struct Stack* stack)
 {
     stack -> array[stack -> top];
 } // peep
-
-int main()
-{
-    struct Stack* stack = initStack(100);
-    push(stack, 10);
-    peep(stack);
-    push(stack, 20);
-    peep(stack);
-    push(stack, 30);
-    peep(stack);
-    pop(stack);
-    peep(stack);
-    pop(stack);
-    peep(stack);
-    pop(stack);
-    peep(stack);
-} // main
