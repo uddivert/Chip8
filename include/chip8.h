@@ -8,7 +8,6 @@ struct chip8 {
     uint8_t varReg[16];
     uint8_t delayTimer;
     uint8_t soundTimer;
-    uint16_t stackPointer[16];
     int16_t progCounter;
     int *display[32];
     struct Stack stack;

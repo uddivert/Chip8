@@ -22,6 +22,8 @@ void jmp (struct chip8* c8)
 
 void set(struct chip8* c8)
 {
-    int instr = peep(&c8 ->stack);
-    c8 -> varReg[instr / 100 % 10] = instr / 10 % 10 * 10 + instr % 10;
+    int instruction = peep(&c8->stack);
+    int index = instruction / 100 % 10;
+    int value = instruction / 10 % 10 * 10 + instruction % 10;
+    c8->varReg[index] = value;
 } // set
