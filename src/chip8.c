@@ -102,3 +102,8 @@ int load_keys(char* fileName)
     } // if
     return 0;
 } // load_keys
+
+int varRegDump(struct chip8* c8, int i) 
+{
+    return c8 -> varReg[i];
+} // varRegDump

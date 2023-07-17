@@ -4,6 +4,8 @@
 #include "isa.h"
 #include "stack.h"
 
+void test();
+
 int main(int argc, char* argv[]) 
 {
     int option;
@@ -29,9 +31,15 @@ int main(int argc, char* argv[])
             case ':':
                 printf("Option -%c requires an argument\n", optopt);
             break;
-        } // switch
-        
-        #ifdef DEBUG
+        } // switch  
+        //c8.varReg[0] = 0xFF;
+        //printf("varReg: %d, varRegDump: %d",c8.varReg[0], varRegDump(&c8, 0));
+        test(c8);
+    } // while
+} // main
+
+void test(struct chip8 c8) 
+{
         /* Test CLS */
         printf("cls Failure\n");
         cls();
@@ -44,13 +52,20 @@ int main(int argc, char* argv[])
         /* Test JMP */
         printf("jmp %s\n", stackVal == c8.progCounter ? "Success": "Failure");
         jmp(&c8);
-        /* Test SET */
-        push(&c8.stack, 111);
-        stackVal = peep(&c8.stack);
-        set(&c8);
-        printf("set %s\n",c8.varReg[stackVal / 100 % 10] == stackVal/ 10 % 10 * 10 + stackVal % 10 ? "Success" : "Failure");
-        #endif
+        /* Test SETVX */
+        c8.instruction = 0x6010;
+        setVx(&c8);
+        printf("setVX: %s\n", varRegDump(&c8, 0) == 0x10 ? "Success" : "Failure");
+        /* Test ADD */
+        c8.instruction = 0x7111;
+        add(&c8);
+        printf("add %s\n",varRegDump(&c8, 1) == 0x11 ? "Success" : "Failure");
+        /* Test SETRI */
+        c8.instruction = 0xA010;
+        setRi(&c8);
+        printf("SetRi %s\n",c8.regI == 0x010 ? "Success" : "Failure");
+        /* Test DISP */
+        c8.instruction = 0xDF3F;
+        display(&c8);
 
-    } // while
-} // main
-
+} // debug
