@@ -52,8 +52,8 @@ void display(struct chip8 *c8)
     int y = (c8->instruction & 0x00F0) >> 4;
 
     c8->varReg[0x0F] = 0; // Reset VF (carry) flag
-
     memcpy(sprite, &(c8->memory[c8->regI]), height * 8);
+    printf("Height: %d, X: %d, Y: %d\n", height, x, y);
 
     for (int row = 0; row < height; row++)
     {

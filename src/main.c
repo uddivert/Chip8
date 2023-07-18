@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
         //printf("varReg: %d, varRegDump: %d",c8.varReg[0], varRegDump(&c8, 0));
         test(c8);
     } // while
+    destroyStack(stack);
 } // main
 
 void test(struct chip8 c8) 
@@ -65,7 +66,7 @@ void test(struct chip8 c8)
         setRi(&c8);
         printf("SetRi %s\n",c8.regI == 0x010 ? "Success" : "Failure");
         /* Test DISP */
-        c8.instruction = 0xDF3F;
+        c8.instruction = 0xDF36;
         display(&c8);
 
 } // debug

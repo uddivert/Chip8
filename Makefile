@@ -10,7 +10,7 @@ CPPFLAGS := -Iinclude -MMD -MP# -I is a preprocessor flag, not a compiler flag
 CFLAGS   := -Wall              # some warnings about bad code
 LDFLAGS  := -Llib              # -L is a linker flag
 LDLIBS   := -lm                # Left empty if no libs are needed
-MACROS   := -D DEBUG
+MACROS   := -g -D DEBUG 
 
 .PHONY: all clean
 

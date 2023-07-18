@@ -10,6 +10,12 @@ struct Stack* initStack(uint8_t size)
     return stack;
 } // initStack
 
+void destroyStack(struct Stack* stack) 
+{
+    free(stack-> array);
+    free(stack);
+} // destroyStack
+
 int isFull(struct Stack* stack)
 {
     return stack -> top == stack -> size -1;
