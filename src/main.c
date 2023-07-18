@@ -4,7 +4,16 @@
 #include "isa.h"
 #include "stack.h"
 
-void test();
+void cpuNull(struct chip8* c8)
+{
+}
+void fetch()
+{
+} // fetch
+
+void execute()
+{
+} // execute`
 
 int main(int argc, char* argv[]) 
 {
@@ -15,6 +24,14 @@ int main(int argc, char* argv[])
     uint8_t sSize = 64;
     struct Stack* stack = initStack(sSize); // 64 BYTE SIZE
     c8.stack = *stack;
+
+    void (*opCode[16])(struct chip8* c8) = 
+    {
+        _f0, _f1, cpuNull, cpuNull,
+        cpuNull, cpuNull, _f6, _f7,
+        cpuNull, cpuNull, _fA, cpuNull,
+        cpuNull, _fD, cpuNull, cpuNull
+    };
 
     while((option = getopt(argc, argv, "f:F:")) != -1)
     { 
@@ -32,41 +49,8 @@ int main(int argc, char* argv[])
                 printf("Option -%c requires an argument\n", optopt);
             break;
         } // switch  
-        //c8.varReg[0] = 0xFF;
-        //printf("varReg: %d, varRegDump: %d",c8.varReg[0], varRegDump(&c8, 0));
-        test(c8);
+        //test(c8);
+        //opCode[0](&c8);
     } // while
     destroyStack(stack);
 } // main
-
-void test(struct chip8 c8) 
-{
-        /* Test CLS */
-        printf("cls Failure\n");
-        cls();
-        printf("cls Success\n");
-        /* Test RET */
-        c8.progCounter = 0x11;
-        int16_t stackVal = peep(&c8.stack);
-        ret(&c8);
-        printf("ret %s\n", stackVal == c8.progCounter ? "Success": "Failure");
-        /* Test JMP */
-        printf("jmp %s\n", stackVal == c8.progCounter ? "Success": "Failure");
-        jmp(&c8);
-        /* Test SETVX */
-        c8.instruction = 0x6010;
-        setVx(&c8);
-        printf("setVX: %s\n", varRegDump(&c8, 0) == 0x10 ? "Success" : "Failure");
-        /* Test ADD */
-        c8.instruction = 0x7111;
-        add(&c8);
-        printf("add %s\n",varRegDump(&c8, 1) == 0x11 ? "Success" : "Failure");
-        /* Test SETRI */
-        c8.instruction = 0xA010;
-        setRi(&c8);
-        printf("SetRi %s\n",c8.regI == 0x010 ? "Success" : "Failure");
-        /* Test DISP */
-        c8.instruction = 0xDF36;
-        display(&c8);
-
-} // debug

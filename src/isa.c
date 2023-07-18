@@ -4,47 +4,43 @@
 #include "isa.h"
 #include "chip8.h"
 
-void cls() 
+void _f0(struct chip8* c8)
 {
-    printf("\e[1;1H\e[2J");
-} // cls
-
-void ret(struct chip8* c8)
-{
-   c8 -> progCounter = peep(&c8 -> stack);
-   pop(&c8 -> stack);
+    if ((c8 -> instruction & 0xF)== 0)  // if 00E0 CLS
+        printf("\e[1;1H\e[2J");
+    c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
+    pop(&c8 -> stack);
 } // ret
 
-void jmp (struct chip8* c8)
+void _f1(struct chip8* c8)
 {
-    int jLoc = c8 -> instruction % 1000;
-    c8 -> progCounter = jLoc; 
+    c8 -> progCounter = c8 -> instruction & 0xFFF; // 1NNN JP 
 } // jmp
 
-void setVx(struct chip8* c8)
+void _f6(struct chip8* c8)
 {
-    //use bit shifts
+    // 3xkk - SE Vx, Byte
     int index = (c8 -> instruction >> 8) & 0xF;
     int value = c8 -> instruction & 0xFF;
     c8 -> varReg[index] = value;
 } // set
 
-void add (struct chip8* c8) 
+void _f7(struct chip8* c8) 
 {
-    //use bit shifts
+    //7xkk - ADD Vx, byte
     int index = (c8 -> instruction >> 8) & 0xF;
     int value = c8 -> instruction & 0xFF;
     c8 -> varReg[index] += value;
     //printf("Instruction: %X, Index: %d, Value: %d\n",c8 -> instruction, index, value);
 } // add
 
-void setRi(struct chip8* c8)
+void _fA(struct chip8* c8)
 {
     int value = c8 -> instruction & 0xFFF;
     c8 -> regI = value;
 } // setRi
 
-void display(struct chip8 *c8) 
+void _fD(struct chip8 *c8) 
 {
     int height = c8->instruction & 0x000F;
     uint8_t sprite[height][8];

@@ -3,11 +3,10 @@
 #ifndef ISA_H 
 #define ISA_H 
 
-void cls(); 
-void ret(struct chip8* c8);
-void jmp(struct chip8* c8);
-void setVx(struct chip8* c8);
-void add(struct chip8* c8);
-void setRi(struct chip8* c8);
-void display(struct chip8 *c8); 
+void _f0(struct chip8* c8);
+void _f1(struct chip8* c8);
+void _f6(struct chip8* c8);
+void _f7(struct chip8* c8);
+void _fA(struct chip8* c8);
+void _fD(struct chip8 *c8); 
 #endif /*ISA_H*/
