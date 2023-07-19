@@ -64,4 +64,12 @@ void _fD(struct chip8 *c8)
             c8->display[displayX][displayY] ^= sprite[row][col];
         } // for
     } // for
+    for(int i = 0; i < 64; i ++) 
+    {
+        for (int j = 0; j < 32; j ++)
+        {
+            printf("%c", c8 -> display[i][j]);
+        } // for
+        printf("\n");
+    } // for
 } // draw

@@ -85,7 +85,9 @@ int load_Memory(struct chip8* c8, char* fileName)
     memcpy(c8 -> memory + 0x050, fonts, sizeof(fonts)); // load fonts to $050 - $09f bc apparently thats popular to do
     //fread(memory + 0x200, 1, st.st_size, fp); // set the rom to memory at $200
     //memcpy(c8 -> memory + 0x200, fp, st.st_size);
+    //
     fread(c8 -> memory + 0x200, 1, st.st_size, fp);
+    c8 -> progCounter = 0x200;
    // fread(memory + 0x200, 1, sizeof(memory) - 0x200, fp);
    return 0;
 } // load_Memory
