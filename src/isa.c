@@ -8,8 +8,10 @@ void _f0(struct chip8* c8)
 {
     if ((c8 -> instruction & 0xF)== 0)  // if 00E0 CLS
         printf("\e[1;1H\e[2J");
-    c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
-    pop(&c8 -> stack);
+    else {
+        c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
+        pop(&c8 -> stack);
+    } // else
 } // ret
 
 void _f1(struct chip8* c8)

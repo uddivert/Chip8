@@ -60,16 +60,16 @@ int main(int argc, char* argv[])
 void fetch()
 {
 
-    //hexdump(c8.memory + c8.progCounter, 50);
-    printf("%.4X\n", c8.progCounter);
+    //printf("%.4X\n", c8.progCounter);
     c8.opcode = (c8.memory[c8.progCounter] << 8) + c8.memory[c8.progCounter + 1] ;
     printf("op code: 0x%.4X\n", c8.opcode);
+    hexdump(c8.memory + c8.progCounter, 50);
     c8.progCounter += 2;
 } // fetch
 
 void execute()
 {
-    //printf("val: %X", c8.opcode &0x000F >> 3);
+    printf("val: %X", c8.opcode &0xF000 >> 3);
     getchar();
     cpuTable[c8.opcode &0x000F >> 3](&c8);
 } // 
