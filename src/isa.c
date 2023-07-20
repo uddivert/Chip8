@@ -6,7 +6,7 @@
 
 void _f0(struct chip8* c8)
 {
-    if ((c8 -> instruction & 0xF)== 0)  // if 00E0 CLS
+    if ((c8 -> opcode & 0xF)== 0)  // if 00E0 CLS
         printf("\e[1;1H\e[2J");
     else {
         c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
@@ -16,38 +16,38 @@ void _f0(struct chip8* c8)
 
 void _f1(struct chip8* c8)
 {
-    c8 -> progCounter = c8 -> instruction & 0xFFF; // 1NNN JP 
+    c8 -> progCounter = c8 -> opcode & 0xFFF; // 1NNN JP 
 } // jmp
 
 void _f6(struct chip8* c8)
 {
     // 3xkk - SE Vx, Byte
-    int index = (c8 -> instruction >> 8) & 0xF;
-    int value = c8 -> instruction & 0xFF;
+    int index = (c8 -> opcode >> 8) & 0xF;
+    int value = c8 -> opcode & 0xFF;
     c8 -> varReg[index] = value;
 } // set
 
 void _f7(struct chip8* c8) 
 {
     //7xkk - ADD Vx, byte
-    int index = (c8 -> instruction >> 8) & 0xF;
-    int value = c8 -> instruction & 0xFF;
+    int index = (c8 -> opcode >> 8) & 0xF;
+    int value = c8 -> opcode & 0xFF;
     c8 -> varReg[index] += value;
-    //printf("Instruction: %X, Index: %d, Value: %d\n",c8 -> instruction, index, value);
+    //printf("Instruction: %X, Index: %d, Value: %d\n",c8 -> opcode, index, value);
 } // add
 
 void _fA(struct chip8* c8)
 {
-    int value = c8 -> instruction & 0xFFF;
+    int value = c8 -> opcode & 0xFFF;
     c8 -> regI = value;
 } // setRi
 
 void _fD(struct chip8 *c8) 
 {
-    int height = c8->instruction & 0x000F;
+    int height = c8-> opcode& 0x000F;
     uint8_t sprite[height][8];
-    int x = (c8->instruction & 0x0F00) >> 8;
-    int y = (c8->instruction & 0x00F0) >> 4;
+    int x = (c8->opcode & 0x0F00) >> 8;
+    int y = (c8->opcode & 0x00F0) >> 4;
 
     c8->varReg[0x0F] = 0; // Reset VF (carry) flag
     memcpy(sprite, &(c8->memory[c8->regI]), height * 8);
