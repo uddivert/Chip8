@@ -9,7 +9,7 @@ OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 CPPFLAGS := -Iinclude -MMD -MP# -I is a preprocessor flag, not a compiler flag
 CFLAGS   := -Wall              # some warnings about bad code
 LDFLAGS  := -Llib              # -L is a linker flag
-LDLIBS   := -lm                # Left empty if no libs are needed
+LDLIBS   := -lm  -lncurses 		# Left empty if no libs are needed
 MACROS   := -g -D DEBUG 
 
 .PHONY: all clean
@@ -29,6 +29,6 @@ clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 run:
-	$(EXE) -f roms/Logo.ch8
+	$(EXE) -t -f roms/Logo.ch8 
 
 -include $(OBJ:.o=.d)
