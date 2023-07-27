@@ -32,4 +32,3 @@ You can find Chip8 ROMs online. Only the IBM rom is currently provided.
 ## Acknowledgments
 
 Thank cowgod fr
-C
