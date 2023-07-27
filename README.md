@@ -1,5 +1,5 @@
 
-# hip8 Emulator
+# Chip8 Emulator
 
 This is a simple Chip8 emulator written in C using the ncurses library for display.
 
