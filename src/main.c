@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
         } // switch  
         //test(c8);
         //cpuTable[0](&c8);
-        while (c8.progCounter < 0xFFF)
+        while (c8.progCounter < 0xFF)
         {
             fetch();
             execute();
@@ -63,6 +63,7 @@ int main(int argc, char* argv[])
     } // while
     destroyStack(stack);
     destroyGui();
+    return 0;
 } // main
 
 void fetch()
