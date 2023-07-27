@@ -49,7 +49,7 @@ void destroyGui()
 
 void display(struct chip8* c8)
 {
-    static int currentLineWindow1 = 1; // Initialize the current line for window1
+    static int currentLine = 1; // Initialize the current line for window1
 
     // Update content in the displayWindow (64x32)
     // ...
@@ -60,12 +60,12 @@ void display(struct chip8* c8)
 
     // Update content in window1
     mvwprintw(window1, 1, 1, "Program Counter");
-    mvwprintw(window1, currentLineWindow1, 1, "%.2X", c8->progCounter);
-    currentLineWindow1++; // Increment the current line for window1
+    mvwprintw(window1, currentLine, 1, "%.2X", c8->progCounter);
+    currentLine++; // Increment the current line for window1
 
     // If the current line exceeds the window height, reset it to 1
-    if (currentLineWindow1 > screenHeight - 2)
-        currentLineWindow1 = 2;
+    if (currentLine > screenHeight - 2)
+        currentLine = 2;
 
     // Box and refresh window1
     box(window1, 0, 0);
@@ -73,6 +73,7 @@ void display(struct chip8* c8)
 
     // Update content in window2
     mvwprintw(window2, 1, 1, "op code");
+    mvwprintw(window2, currentLine, 1, "0x%.4X", c8->opcode);
 
     // Box and refresh window2
     box(window2, 0, 0);
@@ -80,6 +81,11 @@ void display(struct chip8* c8)
 
     // Update content in window3
     mvwprintw(window3, 1, 1, "Registers");
+    for (int i = 0; i < 16; i ++) 
+    {
+        mvwprintw(window3, i + 1 , 1, "Register %i: %X",i, varRegDump(c8, i));
+    } 
+    mvwprintw(window3, 17 , 1, "Register I: %X", c8 -> regI);
 
     // Box and refresh window3
     box(window3, 0, 0);
