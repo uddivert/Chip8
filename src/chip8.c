@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <curses.h>
 #include "chip8.h"
 
 /*
@@ -37,21 +38,21 @@ void hexdump(const void* data, size_t size)
 
     for (i = 0; i < size; i += 16)
     {
-        printf("%06zu: ", i); // prints line numbers
+        printw("%06zu: ", i); // prints line numbers
 
         // Print hex values
         for (j = 0; j < 16; j++)
         {
             if (i + j < size)
-                printf("%02X ", bytes[i + j]);
+                printw("%02X ", bytes[i + j]);
             else
-                printf("   ");
+                printw("   ");
 
             if (j % 8 == 7)
-                printf(" "); // Add extra space after 8 bytes
+                printw(" "); // Add extra space after 8 bytes
         }
 
-        printf(" ");
+        printw(" ");
 
         // Print ASCII values
         for (j = 0; j < 16; j++)
@@ -59,13 +60,13 @@ void hexdump(const void* data, size_t size)
             if (i + j < size)
             {
                 unsigned char ch = bytes[i + j];
-                printf("%c", (ch >= 32 && ch <= 126) ? ch : '.');
+                printw("%c", (ch >= 32 && ch <= 126) ? ch : '.');
             } else {
-                printf(" ");
+                printw(" ");
             }
         }
 
-        printf("\n");
+        printw("\n");
     }
 }
 

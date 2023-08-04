@@ -3,6 +3,7 @@
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
+#include "ncurses.h"
 
 struct chip8 c8;
 void cpuNull(struct chip8* c8)
@@ -37,14 +38,15 @@ int main(int argc, char* argv[])
         {
             case 'f':
             case 'F':
+                initscr();
                 load_Memory(&c8, optarg);
                 // printMem(&c8);
                 break;
             case '?': //used for some unknown options
-                printf("%c is an unknown option\n", optopt);
+                printw("%c is an unknown option\n", optopt);
                 break;
             case ':':
-                printf("Option -%c requires an argument\n", optopt);
+                printw("Option -%c requires an argument\n", optopt);
             break;
         } // switch  
         //test(c8);
@@ -53,37 +55,27 @@ int main(int argc, char* argv[])
         {
             fetch();
             execute();
+            refresh();
             //draw();
         } // while
     } // while
     destroyStack(stack);
+    endwin();
+    return 0;
 } // main
 
 void fetch()
 {
-
-    printf("%.4X\n", c8.progCounter);
+    //printw("%.4X\n", c8.progCounter);
     c8.opcode = (c8.memory[c8.progCounter] << 8) + c8.memory[c8.progCounter + 1] ;
-    printf("op code: 0x%.4X\n", c8.opcode);
+    //printw("op code: 0x%.4X\n", c8.opcode);
     hexdump(c8.memory + c8.progCounter, 50);
     c8.progCounter += 2;
 } // fetch
 
 void execute()
 {
-    //printf("val: %X", (c8.opcode &0xF000) >> 12);
+    //printw("val: %X", (c8.opcode &0xF000) >> 12);
     getchar();
     cpuTable[(c8.opcode &0xF000) >> 12](&c8);
 } // 
-
-void draw() 
-{
-    for(int i = 0; i < 64; i ++) 
-    {
-        for (int j = 0; j < 32; j ++)
-        {
-            printf("%c", c8.display[i][j]);
-        } // for
-        printf("\n");
-    } // for
-} // draw
