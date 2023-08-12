@@ -30,44 +30,6 @@ uint16_t fonts[80] = {
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 }; // fonts
 
-void hexdump(const void* data, size_t size)
-{
-    const unsigned char* bytes = (const unsigned char*)data;
-    size_t i, j;
-
-    for (i = 0; i < size; i += 16)
-    {
-        printf("%06zu: ", i); // prints line numbers
-
-        // Print hex values
-        for (j = 0; j < 16; j++)
-        {
-            if (i + j < size)
-                printf("%02X ", bytes[i + j]);
-            else
-                printf("   ");
-
-            if (j % 8 == 7)
-                printf(" "); // Add extra space after 8 bytes
-        }
-
-        printf(" ");
-
-        // Print ASCII values
-        for (j = 0; j < 16; j++)
-        {
-            if (i + j < size)
-            {
-                unsigned char ch = bytes[i + j];
-                printf("%c", (ch >= 32 && ch <= 126) ? ch : '.');
-            } else {
-                printf(" ");
-            }
-        }
-
-        printf("\n");
-    }
-}
 
 int load_Memory(struct chip8* c8, char* fileName)
 {
@@ -83,27 +45,13 @@ int load_Memory(struct chip8* c8, char* fileName)
     stat(fileName, &st); // to get size of file
     
     memcpy(c8 -> memory + 0x050, fonts, sizeof(fonts)); // load fonts to $050 - $09f bc apparently thats popular to do
-    //fread(memory + 0x200, 1, st.st_size, fp); // set the rom to memory at $200
-    //memcpy(c8 -> memory + 0x200, fp, st.st_size);
-    //
+
     fread(c8 -> memory + 0x200, 1, st.st_size, fp);
     c8 -> progCounter = 0x200;
-   // fread(memory + 0x200, 1, sizeof(memory) - 0x200, fp);
+
    return 0;
 } // load_Memory
 
-int load_keys(char* fileName) 
-{
-    strcat(fileName, "../conf");
-    FILE *fp;
-    fp = fopen(fileName, "r");  
-
-    if(fp == NULL) {
-        perror("File not found");
-        return errno;
-    } // if
-    return 0;
-} // load_keys
 
 int varRegDump(struct chip8* c8, int i) 
 {
