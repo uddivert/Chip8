@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include "chip8.h"
 
-/*
+/**
  * Memory Map
  *
  * RAM = 4096 Bytes
@@ -31,6 +31,14 @@ uint16_t fonts[80] = {
 }; // fonts
 
 
+/**
+ * @brief Loads Memory from rom file into C8 memory
+ * 
+ * @param c8  pointer to chip8 struct
+ * @param fileName rom file being used
+ * @retval -1 error
+ * @retval 0 ok
+ */
 int load_Memory(struct chip8* c8, char* fileName)
 {
     FILE *fp; 
@@ -53,6 +61,14 @@ int load_Memory(struct chip8* c8, char* fileName)
 } // load_Memory
 
 
+/**
+ * @brief Returns the value of a specified register
+ * 
+ * @param c8 pointer to chip8 struct
+ * @param i register you want accessed from 0 to 15
+ * @retval -1 error
+ * @retval 0 ok
+ */
 int varRegDump(struct chip8* c8, int i) 
 {
     return c8 -> varReg[i];

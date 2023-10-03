@@ -1,6 +1,12 @@
 #include <stdlib.h>
 #include "stack.h"
 
+/**
+ * @brief Array based stack data structure
+ * 
+ * @param size 
+ * @return struct Stack* 
+ */
 struct Stack* initStack(uint8_t size)
 {
     struct Stack* stack = malloc(sizeof(struct Stack));

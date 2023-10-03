@@ -21,7 +21,7 @@ void (*cpuTable[16])(struct chip8* c8) =
 void fetch();
 void execute();
 
-int main(int argc, char* argv[]) 
+int main1(int argc, char* argv[]) 
 {
     int option;
 

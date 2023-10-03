@@ -16,6 +16,10 @@ const char* bannerLines[] = {
 	" ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝   "
 	}; // loadBanner
 
+/**
+ * @brief creates debugger and debugger inteface
+ * 
+ */
 void debInit()
 {
 	setlocale(LC_ALL, "");
@@ -38,6 +42,10 @@ void debInit()
     wborder(banner, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 } // guiT_init()
 
+/**
+ * @brief  Loads the fun banner I made :)
+ * 
+ */
 void loadBanner()
 {
 	int numLines = sizeof(bannerLines) / sizeof(bannerLines[0]);
@@ -88,6 +96,10 @@ void destroy_win(WINDOW *local_win)
 	delwin(local_win);
 }
 
+/**
+ * @brief Cleanly closes the debugger
+ * 
+ */
 void quitDeb()
 {
 	destroy_win(pCounter);
@@ -95,6 +107,15 @@ void quitDeb()
     endwin();
 } // quitDeb
 
+/**
+ * @brief Create a new window
+ * 
+ * @param height Height of the window
+ * @param width Width of the window
+ * @param starty y position of where the window needs to be placed
+ * @param startx x position of wher the window needs to be placed
+ * @return WINDOW* returns pointer to the window
+ */
 WINDOW *create_newwin(int height, int width, int starty, int startx)
 {	WINDOW *local_win;
 
@@ -107,7 +128,13 @@ WINDOW *create_newwin(int height, int width, int starty, int startx)
 	return local_win;
 }
 
-void hexdump( const void* data, size_t size)
+/**
+ * @brief Remade hexdump for my screen
+ * 
+ * @param data pointer to the data needed to be dumped
+ * @param size size of the data
+ */
+void hexdump(const void* data, size_t size)
 {
     const unsigned char* bytes = (const unsigned char*)data;
     size_t i, j;
