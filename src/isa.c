@@ -4,6 +4,16 @@
 #include "isa.h"
 #include "chip8.h"
 
+/**
+ * @brief null values for cpuTable
+ * 
+ * @param c8 
+ */
+void cpuNull(struct chip8* c8)
+{
+
+}
+
 void _f0(struct chip8* c8)
 {
     if ((c8 -> opcode & 0xF)== 0)  // if 00E0 CLS

@@ -63,10 +63,11 @@ void guiInit(int argc, char** argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CHIP-8 Uddivert");
 	for (int i = 0; i < 64; i ++) {
-		for (int j = 0; j < 32; j ++) {
+		for (int j = 0; j < 16; j ++) {
 			pixelGrid[i][j] = 1;
 		} // for
 	} // for 
+    pixelGrid[0][0] = 0;
 	init();
 	glutDisplayFunc(display);
 	glutMainLoop();

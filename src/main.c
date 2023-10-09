@@ -1,15 +1,12 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <time.h>
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
 #include "debugger.h"
 
 struct chip8 c8;
-void cpuNull(struct chip8* c8)
-{
-
-}
 void (*cpuTable[16])(struct chip8* c8) = 
 {
     _f0, _f1, cpuNull, cpuNull,
@@ -21,7 +18,7 @@ void (*cpuTable[16])(struct chip8* c8) =
 void fetch();
 void execute();
 
-int main1(int argc, char* argv[]) 
+int main(int argc, char* argv[]) 
 {
     int option;
 
@@ -59,15 +56,33 @@ int main1(int argc, char* argv[])
     quitDeb();
 } // main
 
+/**
+ * @brief Instruction fetch stage of pipeline
+ * 
+ */
 void fetch()
 {
-
     c8.opcode = (c8.memory[c8.progCounter] << 8) + c8.memory[c8.progCounter + 1] ;
     c8.progCounter += 2;
 } // fetch
 
+/**
+ * @brief Instruction execute stage of pipeline
+ * TODO: make instruction only clock length long
+ * 
+ */
 void execute()
 {
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+    #ifdef DEBUG
     getchar();
+    #endif
     cpuTable[(c8.opcode &0xF000) >> 12](&c8);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    if (cpu_time_used < 2000) {
+        usleep (1852 - cpu_time_used);
+    }
 } // 
