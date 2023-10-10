@@ -1,6 +1,8 @@
 #include <unistd.h>
+#include <getopt.h>
 #include <stdio.h>
 #include <time.h>
+#include <pthread.h>
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
@@ -17,6 +19,7 @@ void (*cpuTable[16])(struct chip8* c8) =
 
 void fetch();
 void execute();
+void *guiThread(void *vargp);
 
 int main(int argc, char* argv[]) 
 {
@@ -39,12 +42,24 @@ int main(int argc, char* argv[])
                 // printMem(&c8);
                 break;
             case '?': //used for some unknown options
-                printf("%c is an unknown option\n", optopt);
+                printf("%c is an unknown option\n", option);
                 break;
             case ':':
-                printf("Option -%c requires an argument\n", optopt);
+                printf("Option -%c requires an argument\n", option);
             break;
         } // switch  
+
+        /* args manipulation to get args into array*/
+        void *args[argc + 1];
+        args[0] = &argc;
+        for (int i = 1; i <= argc; i++) {
+            args[i] = argv[i - 1];
+        }
+
+        // make gui thread
+        pthread_t guithread_id;
+        pthread_create(&guithread_id, NULL, guiThread, args); 
+
         while (c8.progCounter)
         {
             fetch();
@@ -86,3 +101,17 @@ void execute()
         usleep (1852 - cpu_time_used);
     }
 } // 
+
+/**
+ * @brief initializes guiInit and the arguments going into it
+ * 
+ * @param vargp void pointer. Actually holds array of args
+ * @return void* 
+ */
+void *guiThread(void *vargp) {
+    int argc = *((int*)vargp);
+    char** argv = (char**)vargp + sizeof(int);
+
+    guiInit(argc, argv); // Call your GUI initialization function with argc and argv
+    return NULL;
+}
