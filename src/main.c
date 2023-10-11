@@ -3,12 +3,17 @@
 #include <stdio.h>
 #include <time.h>
 #include <pthread.h>
+#include <stdio.h>
+#include <signal.h>
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
 #include "debugger.h"
+#include "gui.h"
 
 struct chip8 c8;
+struct Stack* stack;
+pthread_t guithread_id;
 void (*cpuTable[16])(struct chip8* c8) = 
 {
     _f0, _f1, cpuNull, cpuNull,
@@ -20,14 +25,18 @@ void (*cpuTable[16])(struct chip8* c8) =
 void fetch();
 void execute();
 void *guiThread(void *vargp);
+void sigint_handler(int signum);
 
 int main(int argc, char* argv[]) 
 {
+    // Register the SIGINT handler
+    signal(SIGINT, sigint_handler);
+
     int option;
 
     // Set up stack
     uint8_t sSize = 64;
-    struct Stack* stack = initStack(sSize); // 64 BYTE SIZE
+    stack = initStack(sSize); // 64 BYTE SIZE
     c8.stack = *stack;
 
 
@@ -57,7 +66,6 @@ int main(int argc, char* argv[])
         }
 
         // make gui thread
-        pthread_t guithread_id;
         pthread_create(&guithread_id, NULL, guiThread, args); 
 
         while (c8.progCounter)
@@ -67,6 +75,7 @@ int main(int argc, char* argv[])
             debPrint(&c8);
         } // while
     } // while
+    pthread_join(guithread_id, NULL);
     destroyStack(stack);
     quitDeb();
 } // main
@@ -114,4 +123,12 @@ void *guiThread(void *vargp) {
 
     guiInit(argc, argv); // Call your GUI initialization function with argc and argv
     return NULL;
+}
+
+void sigint_handler(int signum) {
+    printf("Control+C pressed. Performing cleanup and exiting...\n");
+    pthread_join(guithread_id, NULL);
+    destroyStack(stack);
+    quitDeb();
+    exit(EXIT_FAILURE);
 }

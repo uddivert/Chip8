@@ -32,9 +32,6 @@ void debInit()
 	printw("Press F1 to exit");
 	refresh();
 
-	int height = LINES;
-	int width = COLS;
-
 	pCounter = create_newwin(3, 10, 1, 0);
 	Registers = create_newwin(19, 30, 5, 0);
 	hexWin = create_newwin(6, 58, 5, 31);
