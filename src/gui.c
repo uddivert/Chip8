@@ -1,6 +1,8 @@
+#include <math.h>
 #include "gui.h"
 
 int pixelGrid[64][32]; // Represents the Chip-8 screen, 64x32 pixels
+int counter = 0;
 /**
  * @brief Displays the gui
  * 
@@ -40,13 +42,23 @@ void display(void)
 void init(void) 
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the clear color to black
+    
+    //set pixelGrid to be empty
+	for (int i = 0; i < 64; i ++) {
+		for (int j = 0; j < 32; j ++) {
+			pixelGrid[i][j] = 0;
+		} // for
+	} // for 
+}
 
-	/*
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT), 0, -1, 1); // Set up an orthographic projection
-    glMatrixMode(GL_MODELVIEW);
-	*/
+// fills screen each instruction
+void screenFill(void) {
+	for (int i = 0; i < 64; i ++) {
+		for (int j = 0; j < 32; j ++) {
+			pixelGrid[counter][j] = 1;
+		} // for
+	} // for 
+    counter ++;
 }
 
 /**
@@ -58,16 +70,11 @@ void init(void)
 void guiInit(int argc, char** argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE);	// Use double display buffer.
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);	// Use double display buffer.
 	glutInitWindowSize(640, 320);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CHIP-8 Uddivert");
-	for (int i = 0; i < 64; i ++) {
-		for (int j = 0; j < 16; j ++) {
-			pixelGrid[i][j] = 1;
-		} // for
-	} // for 
-    pixelGrid[0][0] = 0;
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); // continue program if glut closes
 	init();
 	glutDisplayFunc(display);
 	glutMainLoop();

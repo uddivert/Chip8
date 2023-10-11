@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <time.h>
 #include <pthread.h>
-#include <stdio.h>
-#include <signal.h>
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
@@ -13,7 +11,6 @@
 
 struct chip8 c8;
 struct Stack* stack;
-pthread_t guithread_id;
 void (*cpuTable[16])(struct chip8* c8) = 
 {
     _f0, _f1, cpuNull, cpuNull,
@@ -22,23 +19,18 @@ void (*cpuTable[16])(struct chip8* c8) =
     cpuNull, _fD, cpuNull, cpuNull
 };
 
+void* loop(void* arg);
 void fetch();
 void execute();
-void *guiThread(void *vargp);
-void sigint_handler(int signum);
 
 int main(int argc, char* argv[]) 
 {
-    // Register the SIGINT handler
-    signal(SIGINT, sigint_handler);
-
     int option;
 
     // Set up stack
     uint8_t sSize = 64;
     stack = initStack(sSize); // 64 BYTE SIZE
     c8.stack = *stack;
-
 
     while((option = getopt(argc, argv, "f:F:")) != -1)
     { 
@@ -57,28 +49,33 @@ int main(int argc, char* argv[])
                 printf("Option -%c requires an argument\n", option);
             break;
         } // switch  
-
-        /* args manipulation to get args into array*/
-        void *args[argc + 1];
-        args[0] = &argc;
-        for (int i = 1; i <= argc; i++) {
-            args[i] = argv[i - 1];
-        }
-
-        // make gui thread
-        pthread_create(&guithread_id, NULL, guiThread, args); 
-
-        while (c8.progCounter)
-        {
-            fetch();
-            execute();
-            debPrint(&c8);
-        } // while
     } // while
-    pthread_join(guithread_id, NULL);
+    pthread_t emuthreadid;
+    pthread_create(&emuthreadid, NULL, loop, NULL);
+
+    guiInit(argc, argv);
+
     destroyStack(stack);
     quitDeb();
 } // main
+
+/**
+ * @brief main loop of the program.
+ * Will be another thread.
+ * 
+ */
+void* loop(void* arg)
+{
+    while (c8.progCounter)
+    {
+        fetch();
+        execute();
+        debPrint(&c8);
+        screenFill();
+        glutPostRedisplay();
+    } // while
+    return NULL;
+}
 
 /**
  * @brief Instruction fetch stage of pipeline
@@ -110,25 +107,3 @@ void execute()
         usleep (1852 - cpu_time_used);
     }
 } // 
-
-/**
- * @brief initializes guiInit and the arguments going into it
- * 
- * @param vargp void pointer. Actually holds array of args
- * @return void* 
- */
-void *guiThread(void *vargp) {
-    int argc = *((int*)vargp);
-    char** argv = (char**)vargp + sizeof(int);
-
-    guiInit(argc, argv); // Call your GUI initialization function with argc and argv
-    return NULL;
-}
-
-void sigint_handler(int signum) {
-    printf("Control+C pressed. Performing cleanup and exiting...\n");
-    pthread_join(guithread_id, NULL);
-    destroyStack(stack);
-    quitDeb();
-    exit(EXIT_FAILURE);
-}
