@@ -89,7 +89,6 @@ void fetch()
 
 /**
  * @brief Instruction execute stage of pipeline
- * TODO: make instruction only clock length long
  * 
  */
 void execute()
@@ -97,6 +96,7 @@ void execute()
     clock_t start, end;
     double cpu_time_used;
     start = clock();
+    //TODO Add mutex
     #ifdef DEBUG
     getchar();
     #endif
