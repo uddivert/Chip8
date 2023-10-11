@@ -51,7 +51,7 @@ void init(void)
 	} // for 
 }
 
-// fills screen each instruction
+// fills screen each instruction temporary
 void screenFill(void) {
 	for (int i = 0; i < 64; i ++) {
 		for (int j = 0; j < 32; j ++) {

@@ -16,23 +16,47 @@ struct Stack* initStack(uint8_t size)
     return stack;
 } // initStack
 
+/**
+ * @brief Destroys the stack and deallocate's memory
+ * 
+ * @param stack 
+ */
 void destroyStack(struct Stack* stack) 
 {
     free(stack-> array);
     free(stack);
 } // destroyStack
 
+/**
+ * @brief Returns if stack is full
+ * 
+ * @param stack 
+ * @return int bool true or false
+ */
 int isFull(struct Stack* stack)
 {
     return stack -> top == stack -> size -1;
 } // isFull
 
 
+/**
+ * @brief Returns if stack is empty
+ * 
+ * @param stack 
+ * @return int bool true or false
+ */
 int isEmpty(struct Stack* stack)
 {
     return stack -> top == -1;
 } // isEmpty 
 
+/**
+ * @brief Push value to stack
+ * 
+ * @param stack 
+ * @param item 
+ * @return int error code
+ */
 int push(struct Stack* stack, int item) 
 {
     if(isFull(stack))
@@ -41,6 +65,12 @@ int push(struct Stack* stack, int item)
     return 0;
 } // push
 
+/**
+ * @brief  Pop value from stack
+ * 
+ * @param stack 
+ * @return int error code
+ */
 int pop(struct Stack* stack)
 {
     if (isEmpty(stack)) 
@@ -48,6 +78,12 @@ int pop(struct Stack* stack)
     return stack-> array[-- stack -> top];
 } // pop
 
+/**
+ * @brief Peep top value from stack
+ * 
+ * @param stack 
+ * @return int error code
+ */
 int peep(struct Stack* stack) 
 {
     return stack -> array[stack -> top];

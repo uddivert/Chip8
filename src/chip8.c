@@ -30,7 +30,6 @@ uint16_t fonts[80] = {
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 }; // fonts
 
-
 /**
  * @brief Loads Memory from rom file into C8 memory
  * 
@@ -59,7 +58,6 @@ int load_Memory(struct chip8* c8, char* fileName)
 
    return 0;
 } // load_Memory
-
 
 /**
  * @brief Returns the value of a specified register

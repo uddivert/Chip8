@@ -53,6 +53,11 @@ void loadBanner()
     wrefresh(banner);
 } // loadBanner
 
+/**
+ * @brief prints entire debugger screen using NCURSES
+ * 
+ * @param c8 
+ */
 void debPrint(struct chip8* c8)
 {
 	mvwprintw(pCounter, 1, 1,"0x%.02X", c8 -> progCounter); // update program counter
@@ -71,6 +76,11 @@ void debPrint(struct chip8* c8)
 	wrefresh(hexWin);
 } // debPrint
 
+/**
+ * @brief destroyer for windows
+ * 
+ * @param local_win 
+ */
 void destroy_win(WINDOW *local_win)
 {	
 	/* box(local_win, ' ', ' '); : This won't produce the desired
