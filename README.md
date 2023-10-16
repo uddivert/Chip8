@@ -1,4 +1,3 @@
-
 # Chip8 Emulator
 
 This is a simple Chip8 emulator written in C using the ncurses library for display.
@@ -13,9 +12,9 @@ This is a simple Chip8 emulator written in C using the ncurses library for displ
 
 To run the emulator, use the following command:
 
-bashCopy code
-
 `./bin/chip8 -t -f <path_to_rom_file>` 
+or 
+`make all`
 
 Options:
 
@@ -31,4 +30,4 @@ You can find Chip8 ROMs online. Only the IBM rom is currently provided.
 
 ## Acknowledgments
 
-Thank cowgod fr
+Thank you Cow God for you excellent documentation

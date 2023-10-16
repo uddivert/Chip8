@@ -3,6 +3,7 @@
 #ifndef ISA_H 
 #define ISA_H 
 
+void cpuNull(struct chip8* c8);
 void _f0(struct chip8* c8);
 void _f1(struct chip8* c8);
 void _f6(struct chip8* c8);

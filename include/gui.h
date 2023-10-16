@@ -1,10 +1,8 @@
-#include "chip8.h"
-
-#ifndef GUI_H 
-#define GUI_H 
-
-void ncurseInit();
-void destroyGui();
-void display(struct chip8* c8);
-
+#include <GL/freeglut.h>
+#ifndef GUI_H
+#define GUI_H
+void guiInit(int argc, char** argv);
+void init(void);
+void display(void);
+void screenFill(void);
 #endif

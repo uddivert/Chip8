@@ -17,8 +17,7 @@ struct chip8 {
 
 extern uint16_t fonts[80]; 
 int load_Memory(struct chip8* c8, char* fileName);
-int load_keys(char *fileName);
-void hexdump(const void* data, size_t size);
+//int load_keys(char *fileName);
 int varRegDump(struct chip8* c8, int i); 
 
 /*
