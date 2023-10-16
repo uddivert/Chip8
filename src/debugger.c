@@ -1,11 +1,11 @@
 #include "debugger.h"
 #include "chip8.h"
-#include <locale.h>
 
 WINDOW *pCounter;
 WINDOW *Registers;
 WINDOW *hexWin;
 WINDOW *banner;
+WINDOW *extra;
 
 const char* bannerLines[] = {
 	"██╗   ██╗██████╗ ██████╗ ██╗██╗   ██╗███████╗██████╗ ████████╗", 
@@ -22,7 +22,6 @@ const char* bannerLines[] = {
  */
 void debInit()
 {
-	setlocale(LC_ALL, "");
 	initscr();			/* Start curses mode 		*/
 	noecho();			/* No echo */
 	cbreak();			/* Line buffering disabled, Pass on
@@ -32,11 +31,18 @@ void debInit()
 	printw("Press F1 to exit");
 	refresh();
 
+
 	pCounter = create_newwin(3, 10, 1, 0);
 	Registers = create_newwin(19, 30, 5, 0);
 	hexWin = create_newwin(6, 58, 5, 31);
 	banner = create_newwin(9, 64, 11,31);
+	extra= create_newwin(9, 64, 20,31);
+
     wborder(banner, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+    wborder(extra, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+
+	loadBanner();
+	printExtra("Hello %d", 1);
 } // guiT_init()
 
 /**
@@ -52,6 +58,29 @@ void loadBanner()
     }
     wrefresh(banner);
 } // loadBanner
+
+
+/**
+ * @brief for printf. Below banner 
+ * 
+ */
+void printExtra(const char* format, ...) {
+    va_list args;  // Initialize a variable argument list
+    va_start(args, format);  // Start the variable argument list
+
+    // Use vprintf-like functionality to format the string
+    int max_length = 256;  // You can adjust this buffer size as needed
+    char buffer[max_length];
+    vsnprintf(buffer, max_length, format, args);
+
+    // Print the formatted string to the "extra" window
+    wprintw(extra, buffer);  // 'extra' is assumed to be your ncurses window
+
+    // Refresh the window to display the new content
+    wrefresh(extra);
+
+    va_end(args);  // End the variable argument list
+}
 
 /**
  * @brief prints entire debugger screen using NCURSES

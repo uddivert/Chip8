@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <locale.h>
 #include <getopt.h>
 #include <stdio.h>
 #include <time.h>
@@ -25,6 +26,7 @@ void execute();
 
 int main(int argc, char* argv[]) 
 {
+	setlocale(LC_ALL, "");
     int option;
 
     // Set up stack
@@ -95,6 +97,7 @@ void fetch()
  */
 void execute()
 {
+	printExtra("Hello %d", 1);
     clock_t start, end;
     double cpu_time_used;
     start = clock();

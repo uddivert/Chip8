@@ -78,7 +78,7 @@ void _fD(struct chip8 *c8)
     } // for
 
 
-    printf("Sprite Data\nHeight: %d, X: %d, Y: %d\n", height, x, y);
+    printExtra("Sprite Data\nHeight: %d, X: %d, Y: %d\n", height, x, y);
     for (int row = 0; row < height; row ++) 
     {
      //       printf("%.2X\n", sprite[row]); // nl for spriteDump
@@ -87,29 +87,4 @@ void _fD(struct chip8 *c8)
             //((sprite[row] >> row) & 0xF) ? printf("█ ") : printf(" ");
         //printf("\n"); // nl for sprite dump
     } // for
-    getchar(); // pause on sprite dump
-
-    /*
-    for (int row = 0; row < height; row++)
-    {
-        for (int col = 0; col < 8; col++) 
-        {
-            int displayX = (x + col) % 64;
-            int displayY = (y + row) % 32;
-
-            if ((c8->display[displayX][displayY] ^ sprite[row][col]) == 0)
-                c8->varReg[0x0F] = 1; // Set VF (carry) flag if collision occurs
-
-            c8->display[displayX][displayY] ^= sprite[row][col];
-        } // for
-    } // for
-    for(int i = 0; i < 64; i ++) 
-    {
-        for (int j = 0; j < 32; j ++)
-        {
-            printf("%c", c8 -> display[i][j]);
-        } // for
-        printf("\n");
-    } // for
-*/
 } // draw
