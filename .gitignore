@@ -1,2 +1,4 @@
 obj/
-bin/chip8
+mvscode/
+bin/
+*.pdf
