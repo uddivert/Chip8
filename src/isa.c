@@ -53,38 +53,29 @@ void _fA(struct chip8* c8)
     c8 -> regI = value;
 } // setRi
 
-void pSprite(struct chip8 *c8) 
-{
-} // pSprite
-
+/**
+ * @brief  DRW Vx, Vy, nibble
+ * 
+ * @param c8  Chip 8 struct
+ */
 void _fD(struct chip8 *c8) 
 {
+    printExtra("Opcode: %X\n", c8 -> opcode);
+
     int height = c8-> opcode& 0x000F;
-    uint8_t sprite[height];
-    int x = (c8->opcode & 0x0F00) >> 8;
-    int y = (c8->opcode & 0x00F0) >> 4;
+    uint8_t x = (c8->opcode & 0x0F00) >> 8;
+    uint8_t y = (c8->opcode & 0x00F0) >> 4;
+    //x = c8 -> varReg[x & 63]; // xcoord is VX
+    //y =  c7 -> varReg[y & 32]; // ycoord is VY
 
     c8->varReg[0x0F] = 0; // Reset VF (carry) flag
-    memcpy(sprite, &(c8->memory[c8->regI]), height);
     
-    /* Print sprite data */
+    for (int row = 0; row < height; row++) {
+        uint8_t spriteData = c8->memory[c8->regI + row];
 
-    //not getting proper sprite data
-    // should be 8 x 15 need to change memcpy
-    //printf("Register I:%X\n", c8 -> regI);
-
-    for(int i = 0; i < height; i ++) {
-        //printf("MD:%X\n", c8 -> memory[c8 -> regI +i]); 
-    } // for
-
-
-    printExtra("Sprite Data\nHeight: %d, X: %d, Y: %d\n", height, x, y);
-    for (int row = 0; row < height; row ++) 
-    {
-     //       printf("%.2X\n", sprite[row]); // nl for spriteDump
-            int sBit = (sprite[row]>> row) & 0xF;
-            //printf("%d",sBit);
-            //((sprite[row] >> row) & 0xF) ? printf("█ ") : printf(" ");
-        //printf("\n"); // nl for sprite dump
-    } // for
+        // Loop through each pixel in the row
+        for (int col = 0; col < 8; col++) {
+            // for
+            } // for 
+        } // for
 } // draw

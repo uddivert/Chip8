@@ -7,6 +7,9 @@ WINDOW *hexWin;
 WINDOW *banner;
 WINDOW *extra;
 
+int width;
+int height; 
+
 const char* bannerLines[] = {
 	"██╗   ██╗██████╗ ██████╗ ██╗██╗   ██╗███████╗██████╗ ████████╗", 
 	"██║   ██║██╔══██╗██╔══██╗██║██║   ██║██╔════╝██╔══██╗╚══██╔══╝", 
@@ -30,19 +33,19 @@ void debInit()
 
 	printw("Press F1 to exit");
 	refresh();
+	getmaxyx(stdscr,width, height);
 
 
 	pCounter = create_newwin(3, 10, 1, 0);
 	Registers = create_newwin(19, 30, 5, 0);
 	hexWin = create_newwin(6, 58, 5, 31);
 	banner = create_newwin(9, 64, 11,31);
-	extra= create_newwin(9, 64, 20,31);
+	extra= create_newwin(height - 11, 64, 20,31);
 
     wborder(banner, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     wborder(extra, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 
 	loadBanner();
-	printExtra("Hello %d", 1);
 } // guiT_init()
 
 /**

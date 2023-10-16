@@ -97,7 +97,6 @@ void fetch()
  */
 void execute()
 {
-	printExtra("Hello %d", 1);
     clock_t start, end;
     double cpu_time_used;
     start = clock();
