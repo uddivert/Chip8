@@ -5,4 +5,4 @@ void guiInit(int argc, char** argv);
 void init(void);
 void display(void);
 void screenFill(void);
-#endif 
+#endif
