@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
         {
             case 'f':
             case 'F':
+                initscr();
                 load_Memory(&c8, optarg);
                 debInit();
                 // printMem(&c8);
@@ -57,6 +58,7 @@ int main(int argc, char* argv[])
 
     destroyStack(stack);
     quitDeb();
+    return EXIT_SUCCESS;
 } // main
 
 /**

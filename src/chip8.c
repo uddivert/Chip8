@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <curses.h>
 #include "chip8.h"
 
 /**
