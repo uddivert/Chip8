@@ -2,7 +2,7 @@
 #include "chip8.h"
 #include "gui.h"
 
-int pixelGrid[64][32]; // Represents the Chip-8 screen, 64x32 pixels
+int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
 int counter = 0;
 /**
  * @brief Displays the gui
@@ -16,13 +16,13 @@ void display(void)
     glColor3f(1.0f, 1.0f, 1.0f);
 
     // Define the size of each pixel square
-    float pixelSizeX = 2.0f / 64; // Width of each pixel
-    float pixelSizeY = 2.0f / 32; // Height of each pixel
+    float pixelSizeX = 2.0f / 32; // Width of each pixel
+    float pixelSizeY = 2.0f / 64; // Height of each pixel
 
     glBegin(GL_QUADS); // Begin drawing quads
 
-    for (int x = 0; x < 64; x++) {
-        for (int y = 0; y < 32; y++) {
+    for (int x = 0; x < 32; x++) {
+        for (int y = 0; y < 64; y++) {
             if (pixelGrid[x][y] == 1) {
                 // Pixel is lit, draw a white rectangle
                 glVertex2f(-1.0f + x * pixelSizeX, 1.0f - y * pixelSizeY); // Top-left corner
@@ -44,8 +44,8 @@ void init(void)
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the clear color to black
     //set displayto be empty
-    for (int i = 0; i < 64; i ++) {
-        for (int j = 0; j < 32; j ++) {
+    for (int i = 0; i < 32; i ++) {
+        for (int j = 0; j < 64; j ++) {
             pixelGrid[i][j] = 0;
         } // for
     } // for 
@@ -53,8 +53,8 @@ void init(void)
 
 // fills screen each instruction temporary
 void screenFill(void) {
-    for (int i = 0; i < 64; i ++) {
-        for (int j = 0; j < 32; j ++) {
+    for (int i = 0; i < 32; i ++) {
+        for (int j = 0; j < 64; j ++) {
             pixelGrid[counter][j] = 1;
         } // for
     } // for 
