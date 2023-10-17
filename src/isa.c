@@ -3,6 +3,7 @@
 #include <string.h>
 #include "isa.h"
 #include "chip8.h"
+#include "debugger.h"
 
 /**
  * @brief null values for cpuTable
@@ -65,17 +66,23 @@ void _fD(struct chip8 *c8)
     int height = c8-> opcode& 0x000F;
     uint8_t x = (c8->opcode & 0x0F00) >> 8;
     uint8_t y = (c8->opcode & 0x00F0) >> 4;
-    //x = c8 -> varReg[x & 63]; // xcoord is VX
-    //y =  c7 -> varReg[y & 32]; // ycoord is VY
-
-    c8->varReg[0x0F] = 0; // Reset VF (carry) flag
+    x = c8 -> varReg[x] & 63; // xcoord is VX
+    y =  c8 -> varReg[y] & 31; // ycoord is VY
+    c8-> varReg[0x0F] = 0; // Reset VF (carry) flag
     
+    // Loop through each pixel in the row
     for (int row = 0; row < height; row++) {
+        if (row + y >= 32) break; // overflow
         uint8_t spriteData = c8->memory[c8->regI + row];
-
-        // Loop through each pixel in the row
+        printExtra("spriteData: %X", spriteData);
         for (int col = 0; col < 8; col++) {
-            // for
-            } // for 
+            if (col + x >= 64) break; // overflow
+            uint8_t pixel = (spriteData >> (7 - col)) & 0x1;
+            if(!pixel) continue;
+            if (c8 -> display[row][col] ==1) {
+                c8 ->varReg[0x0F] = 1;
+            }
+            c8 -> display[row][col] ^=1;
         } // for
+    } // for
 } // draw

@@ -1,4 +1,5 @@
 #include <math.h>
+#include "chip8.h"
 #include "gui.h"
 
 int pixelGrid[64][32]; // Represents the Chip-8 screen, 64x32 pixels
@@ -9,7 +10,7 @@ int counter = 0;
  */
 void display(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     // Set the drawing color to white
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -35,29 +36,28 @@ void display(void)
     glEnd(); // End drawing quads
 
     glFlush(); // Flush the rendering pipeline
-	glutSwapBuffers();
+    glutSwapBuffers();
 }
 
 // Initialize OpenGL
 void init(void) 
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the clear color to black
-    
-    //set pixelGrid to be empty
-	for (int i = 0; i < 64; i ++) {
-		for (int j = 0; j < 32; j ++) {
-			pixelGrid[i][j] = 0;
-		} // for
-	} // for 
+    //set displayto be empty
+    for (int i = 0; i < 64; i ++) {
+        for (int j = 0; j < 32; j ++) {
+            pixelGrid[i][j] = 0;
+        } // for
+    } // for 
 }
 
 // fills screen each instruction temporary
 void screenFill(void) {
-	for (int i = 0; i < 64; i ++) {
-		for (int j = 0; j < 32; j ++) {
-			pixelGrid[counter][j] = 1;
-		} // for
-	} // for 
+    for (int i = 0; i < 64; i ++) {
+        for (int j = 0; j < 32; j ++) {
+            pixelGrid[counter][j] = 1;
+        } // for
+    } // for 
     counter ++;
 }
 
@@ -69,16 +69,15 @@ void screenFill(void) {
  */
 void guiInit(int argc, char** argv)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);	// Use double display buffer.
-	glutInitWindowSize(640, 320);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow("CHIP-8 Uddivert");
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);	// Use double display buffer.
+    glutInitWindowSize(640, 320);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("CHIP-8 Uddivert");
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); // continue program if glut closes
-	init();
-	glutDisplayFunc(display);
-	glutMainLoop();
-
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
 } // guiInit
 
 // TODO
