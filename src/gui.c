@@ -1,5 +1,4 @@
 #include <math.h>
-#include "chip8.h"
 #include "gui.h"
 
 int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
@@ -52,10 +51,10 @@ void init(void)
 }
 
 // fills screen each instruction temporary
-void screenFill(void) {
+void screenFill(uint8_t grid[][64]) {
     for (int i = 0; i < 32; i ++) {
         for (int j = 0; j < 64; j ++) {
-            pixelGrid[counter][j] = 1;
+            pixelGrid[i][j] = grid[i][j];
         } // for
     } // for 
     counter ++;

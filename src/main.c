@@ -75,7 +75,7 @@ void* loop(void* arg)
         fetch();
         execute();
         debPrint(&c8);
-        screenFill();
+        screenFill(c8.display);
         glutPostRedisplay();
     } // while
     return NULL;

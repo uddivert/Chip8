@@ -11,7 +11,7 @@ struct chip8 {
     uint8_t delayTimer;
     uint8_t soundTimer;
     int16_t progCounter;
-    uint8_t display[64][32];
+    uint8_t display[32][64]; // row x col
     struct Stack stack;
 }; // chip8
 
