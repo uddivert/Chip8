@@ -15,14 +15,14 @@ void display(void)
     glColor3f(1.0f, 1.0f, 1.0f);
 
     // Define the size of each pixel square
-    float pixelSizeX = 2.0f / 32; // Width of each pixel
-    float pixelSizeY = 2.0f / 64; // Height of each pixel
+    float pixelSizeX = 2.0f / 64; // Width of each pixel
+    float pixelSizeY = 2.0f / 32; // Height of each pixel
 
     glBegin(GL_QUADS); // Begin drawing quads
 
-    for (int x = 0; x < 32; x++) {
-        for (int y = 0; y < 64; y++) {
-            if (pixelGrid[x][y] == 1) {
+    for (int y = 0; y < 32; y++) {
+        for (int x = 0; x < 64; x++) {
+            if (pixelGrid[y][x] == 1) {
                 // Pixel is lit, draw a white rectangle
                 glVertex2f(-1.0f + x * pixelSizeX, 1.0f - y * pixelSizeY); // Top-left corner
                 glVertex2f(-1.0f + (x + 1) * pixelSizeX, 1.0f - y * pixelSizeY); // Top-right corner

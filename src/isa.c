@@ -79,10 +79,10 @@ void _fD(struct chip8 *c8)
             if (col + x >= 64) break; // overflow
             uint8_t pixel = (spriteData >> (7 - col)) & 0x1;
             if(!pixel) continue;
-            if (c8 -> display[row][col] ==1) {
+            if (c8 -> display[row + y][col + x] ==1) {
                 c8 ->varReg[0x0F] = 1;
             }
-            c8 -> display[row][col] ^=1;
+            c8 -> display[row + y][col + x] ^=1;
         } // for
     } // for
 } // draw
