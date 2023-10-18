@@ -41,11 +41,9 @@ void _f6(struct chip8* c8)
 
 void _f7(struct chip8* c8) 
 {
-    //7xkk - ADD Vx, byte
     int index = (c8 -> opcode >> 8) & 0xF;
     int value = c8 -> opcode & 0xFF;
     c8 -> varReg[index] += value;
-    //printf("Instruction: %X, Index: %d, Value: %d\n",c8 -> opcode, index, value);
 } // add
 
 void _fA(struct chip8* c8)
@@ -61,8 +59,6 @@ void _fA(struct chip8* c8)
  */
 void _fD(struct chip8 *c8) 
 {
-    printExtra("Opcode: %X\n", c8 -> opcode);
-
     int height = c8-> opcode& 0x000F;
     uint8_t x = (c8->opcode & 0x0F00) >> 8;
     uint8_t y = (c8->opcode & 0x00F0) >> 4;
@@ -74,7 +70,6 @@ void _fD(struct chip8 *c8)
     for (int row = 0; row < height; row++) {
         if (row + y >= 32) break; // overflow
         uint8_t spriteData = c8->memory[c8->regI + row];
-        printExtra("spriteData: %X", spriteData);
         for (int col = 0; col < 8; col++) {
             if (col + x >= 64) break; // overflow
             uint8_t pixel = (spriteData >> (7 - col)) & 0x1;
