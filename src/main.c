@@ -14,9 +14,9 @@ struct chip8 c8;
 struct Stack* stack;
 void (*cpuTable[16])(struct chip8* c8) = 
 {
-    _f0, _f1, cpuNull, cpuNull,
-    cpuNull, cpuNull, _f6, _f7,
-    cpuNull, cpuNull, _fA, cpuNull,
+    _f0, _f1, _f2, _f3,
+    _f4, _f5, _f6, _f7,
+    _f8, cpuNull, _fA, cpuNull,
     cpuNull, _fD, cpuNull, cpuNull
 };
 
