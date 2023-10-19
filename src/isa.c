@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <time.h>
 #include "isa.h"
 #include "chip8.h"
 #include "debugger.h"
@@ -266,6 +268,24 @@ void _f8(struct chip8 *c8)
 } // ? 
 
 /**
+ * @brief 9xy0 - SNE Vx, Vy
+ * Skip next instruction if Vx != Vy.
+ * The values of Vx and Vy are compared, 
+ * and if they are not equal,
+ * the program counter is increased by 2.
+ * 
+ * @param c8 
+ */
+void _f9(struct chip8* c8)
+{
+    int x = (c8 -> opcode >> 8) & 0xF;
+    int y = (c8 -> opcode >> 4) & 0xF;
+    if (c8 -> varReg[x] != c8 -> varReg[y]) {
+        c8 -> progCounter +=2;
+    } // if
+} // SNE
+
+/**
  * @brief LD I, addr * The value of register I is set to nnn * 
  * @param c8 
  */
@@ -274,6 +294,34 @@ void _fA(struct chip8* c8)
     int value = c8 -> opcode & 0xFFF;
     c8 -> regI = value;
 } // setRi
+
+/**
+ * @brief Bnnn - JP V0, addr
+ * Jump to location nnn + V0.
+ * The program counter is set to nnn plus the value of V0. 
+ * @param c8 
+ */
+void _fB(struct chip8* c8)
+{
+    int addr = c8 -> opcode & 0xFFF;
+    c8 -> progCounter = addr + c8 -> varReg[0];
+} // Branch
+
+/**
+ * @brief Cxkk - RND Vx, byte
+ * Set Vx = random byte AND kk.
+ * The interpreter generates a random number from 0 to 255
+ * which is then ANDed with the value kk. The results are stored in Vx.
+ * See instruction 8xy2 for more information on AND.
+ */
+void _fC(struct chip8* c8) 
+{
+    int index = (c8 -> opcode >> 8) & 0xF;
+    int val = c8 -> opcode & 0xFF;
+    srand(time(NULL));
+    int random = rand() % 255;
+    c8 -> varReg[index] = random & val;
+} // RND
 
 /**
  * @brief  DRW Vx, Vy, nibble

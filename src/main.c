@@ -16,8 +16,8 @@ void (*cpuTable[16])(struct chip8* c8) =
 {
     _f0, _f1, _f2, _f3,
     _f4, _f5, _f6, _f7,
-    _f8, cpuNull, _fA, cpuNull,
-    cpuNull, _fD, cpuNull, cpuNull
+    _f8, _f9, _fA, _fB,
+    _fC, _fD, cpuNull, cpuNull
 };
 
 void* loop(void* arg);
