@@ -3,6 +3,7 @@
 
 int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
 int counter = 0;
+int guiFlag = 0;
 /**
  * @brief Displays the gui
  * 
@@ -65,6 +66,11 @@ void keyBoard(unsigned char key, int x, int y)
     printExtra("%c", key);
 }
 
+void closeCallback(void) {
+    quitDeb();
+    glutLeaveMainLoop();
+}
+
 /**
  * @brief Handles all the startup of the gui
  * 
@@ -80,7 +86,9 @@ void guiInit(int argc, char** argv)
     glutCreateWindow("CHIP-8 Uddivert");
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); // continue program if glut closes
     init();
+    guiFlag = 1;
     glutDisplayFunc(display);
     glutKeyboardFunc(keyBoard);
+    glutCloseFunc(closeCallback);
     glutMainLoop();
 } // guiInit

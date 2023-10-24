@@ -55,9 +55,7 @@ int main(int argc, char* argv[])
     } // while
     pthread_t emuthreadid;
     pthread_create(&emuthreadid, NULL, loop, NULL);
-
     guiInit(argc, argv);
-
     destroyStack(stack);
     quitDeb();
     return EXIT_SUCCESS;
@@ -76,6 +74,9 @@ void* loop(void* arg)
         execute();
         debPrint(&c8);
         screenFill(c8.display);
+        while (!guiFlag) {
+
+        }
         glutPostRedisplay();
     } // while
     return NULL;
@@ -101,6 +102,7 @@ void execute()
     double cpu_time_used;
     start = clock();
     //TODO Add mutex
+    #undef DEBUG
     #ifdef DEBUG
     getchar();
     #endif

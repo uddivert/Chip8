@@ -1,6 +1,7 @@
 #include <GL/freeglut.h>
 #ifndef GUI_H
 #define GUI_H
+extern int guiFlag;
 void guiInit(int argc, char** argv);
 void init(void);
 void display(void);
