@@ -20,9 +20,10 @@ void (*cpuTable[16])(struct chip8* c8) =
     _fC, _fD, cpuNull, cpuNull
 };
 
-void* loop(void* arg);
+void *loop(void* arg);
 void fetch();
 void execute();
+void *timer(void *arg);
 
 int main(int argc, char* argv[]) 
 {
@@ -33,6 +34,9 @@ int main(int argc, char* argv[])
     uint8_t sSize = 64;
     stack = initStack(sSize); // 64 BYTE SIZE
     c8.stack = *stack;
+
+    // Set timer to full
+    c8.delayTimer = 0xFF;
 
     while((option = getopt(argc, argv, "f:F:")) != -1)
     { 
@@ -66,8 +70,10 @@ int main(int argc, char* argv[])
  * Will be another thread.
  * 
  */
-void* loop(void* arg)
+void *loop(void *arg)
 {
+    pthread_t timerthreadid; // timer thread
+    pthread_create(&timerthreadid, NULL, timer, NULL);
     while (c8.progCounter)
     {
         fetch();
@@ -79,8 +85,22 @@ void* loop(void* arg)
         }
         glutPostRedisplay();
     } // while
-    return NULL;
+    pthread_join(timerthreadid, NULL);
+    return EXIT_SUCCESS;
 }
+void *timer(void *arg) {
+    while (c8.delayTimer) {
+        clock_t start, end;
+        double cpu_time_used;
+        start = clock();
+        cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+        if (cpu_time_used < 16666) {
+            usleep (16666- cpu_time_used); // wait for 60 hz to be over
+            c8.delayTimer -=1;
+        } // if
+    } // while
+    return NULL;
+} // timer
 
 /**
  * @brief Instruction fetch stage of pipeline
