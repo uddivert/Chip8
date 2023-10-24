@@ -1,6 +1,19 @@
 #include <math.h>
 #include "gui.h"
 
+unsigned char keys[16] = {
+    '1', '2', '3', '4',
+    'q', 'w', 'e', 'r',
+    'a', 's', 'd', 'f',
+    'z', 'x', 'c', 'v'
+};
+int keyPress[16] = {
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+};
+
 int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
 int counter = 0;
 int guiFlag = 0;
@@ -63,7 +76,20 @@ void screenFill(uint8_t grid[][64]) {
 
 void keyBoard(unsigned char key, int x, int y)
 {
-    printExtra("%c", key);
+    for (int i = 0; i < 16; i ++) {
+        if (key == keys[i]) {
+            printExtra("%c", key);
+            keyPress[i] = 1;
+        }
+    }
+}
+
+void keyBoardUp(unsigned char key, int x, int y) {
+    for (int i = 0; i < 16; i ++) {
+        if (key == keys[i]) {
+            keyPress[i] = 0;
+        }
+    }
 }
 
 void closeCallback(void) {
@@ -89,6 +115,7 @@ void guiInit(int argc, char** argv)
     guiFlag = 1;
     glutDisplayFunc(display);
     glutKeyboardFunc(keyBoard);
+    glutKeyboardUpFunc(keyBoardUp);
     glutCloseFunc(closeCallback);
     glutMainLoop();
 } // guiInit
