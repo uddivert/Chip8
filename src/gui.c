@@ -60,6 +60,11 @@ void screenFill(uint8_t grid[][64]) {
     counter ++;
 }
 
+void keyBoard(unsigned char key, int x, int y)
+{
+    printExtra("%c", key);
+}
+
 /**
  * @brief Handles all the startup of the gui
  * 
@@ -76,10 +81,6 @@ void guiInit(int argc, char** argv)
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); // continue program if glut closes
     init();
     glutDisplayFunc(display);
+    glutKeyboardFunc(keyBoard);
     glutMainLoop();
 } // guiInit
-
-// TODO
-// Timer function that updates at every clock pulse.
-// pixel array that holds pixels need to be drawn`
-// Draw pixels as quads
