@@ -6,6 +6,7 @@
 #include "isa.h"
 #include "chip8.h"
 #include "debugger.h"
+#include "gui.h"
 
 /**
  * @brief null values for cpuTable
@@ -352,3 +353,24 @@ void _fD(struct chip8 *c8)
         } // for
     } // for
 } // draw
+
+/**
+ * @brief Ex?? - SK(?N)P Vx
+ * 
+ * @param c8 
+ */
+void _fE(struct chip8 *c8) {
+    uint8_t index = (c8->opcode & 0x0F00) >> 8;
+    switch(c8 -> opcode & 0x00FF) {
+        case(0x9E):
+            if (keyPress[c8 -> varReg[index]])
+               c8 -> progCounter += 2; 
+            break;
+        case(0xA1):
+            if (!keyPress[c8 -> varReg[index]])
+               c8 -> progCounter += 2; 
+            break;
+        default:
+            break;
+    }
+}

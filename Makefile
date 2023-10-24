@@ -29,6 +29,6 @@ clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 run:
-	$(EXE) -f roms/Logo.ch8
+	$(EXE) -f roms/3-corax+.ch8
 debug:
 	ddd --args  $(EXE) -f roms/Logo.ch8
