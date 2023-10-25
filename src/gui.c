@@ -16,7 +16,7 @@ int keyPress[16] = {
 
 int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
 int counter = 0;
-int guiFlag = 0;
+int _Atomic guiFlag = 0;
 /**
  * @brief Displays the gui
  * 
@@ -117,5 +117,6 @@ void guiInit(int argc, char** argv)
     glutKeyboardFunc(keyBoard);
     glutKeyboardUpFunc(keyBoardUp);
     glutCloseFunc(closeCallback);
+    glutIdleFunc(display);
     glutMainLoop();
 } // guiInit

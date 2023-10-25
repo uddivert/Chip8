@@ -83,7 +83,6 @@ void *loop(void *arg)
         while (!guiFlag) {
 
         }
-        glutPostRedisplay();
     } // while
     pthread_join(timerthreadid, NULL);
     return EXIT_SUCCESS;
