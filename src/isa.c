@@ -362,10 +362,26 @@ void _fD(struct chip8 *c8)
 void _fE(struct chip8 *c8) {
     uint8_t index = (c8->opcode & 0x0F00) >> 8;
     switch(c8 -> opcode & 0x00FF) {
+        /**
+         * @brief Ex9E - SKP Vx
+         * Skip next instruction if key with the
+         * value of Vx is pressed.
+         * Checks the keyboard, and if the key
+         * corresponding to the value of Vx is currently
+         * in the down position, PC is increased by 2.
+         */
         case(0x9E):
             if (keyPress[c8 -> varReg[index]])
                c8 -> progCounter += 2; 
             break;
+        /**
+         * @brief ExA1 - SKNP Vx
+         * Skip next instruction if key with
+         * the value of Vx is not pressed.
+         * Checks the keyboard, and if the key
+         * corresponding to the value of Vx is currently
+         * in the up position, PC is increased by 2. 
+         */
         case(0xA1):
             if (!keyPress[c8 -> varReg[index]])
                c8 -> progCounter += 2; 
@@ -374,3 +390,33 @@ void _fE(struct chip8 *c8) {
             break;
     }
 }
+/**
+ * @brief Fx?? - LD ????
+ * 
+ * @param c8 
+ */
+void _fF(struct chip8 *c8) { 
+    uint8_t index = (c8->opcode & 0x0F00) >> 8;
+    switch(c8 -> opcode & 0x00FF) {
+        case(0x07):
+            break;
+        case(0x0A):
+            break;
+        case(0x15):
+            break;
+        case(0x18):
+            break;
+        case(0x1E):
+            break;
+        case(0x29):
+            break;
+        case(0x33):
+            break;
+        case(0x55):
+            break;
+        case(0x65):
+            break;
+        default:
+            break;
+    } // switch
+} // ff

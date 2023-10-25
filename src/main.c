@@ -17,7 +17,7 @@ void (*cpuTable[16])(struct chip8* c8) =
     _f0, _f1, _f2, _f3,
     _f4, _f5, _f6, _f7,
     _f8, _f9, _fA, _fB,
-    _fC, _fD, cpuNull, cpuNull
+    _fC, _fD, _fE, cpuNull
 };
 
 void *loop(void* arg);
@@ -90,14 +90,8 @@ void *loop(void *arg)
 }
 void *timer(void *arg) {
     while (c8.delayTimer) {
-        clock_t start, end;
-        double cpu_time_used;
-        start = clock();
-        cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-        if (cpu_time_used < 16666) {
-            usleep (16666- cpu_time_used); // wait for 60 hz to be over
-            c8.delayTimer -=1;
-        } // if
+        usleep (16666); // wait for 60 hz to be over
+        c8.delayTimer -=1;
     } // while
     return NULL;
 } // timer
