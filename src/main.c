@@ -46,7 +46,6 @@ int main(int argc, char* argv[])
             case 'F':
                 initscr();
                 load_Memory(&c8, optarg);
-                debInit();
                 // printMem(&c8);
                 break;
             case '?': //used for some unknown options
@@ -57,6 +56,7 @@ int main(int argc, char* argv[])
             break;
         } // switch  
     } // while
+    debInit();
     pthread_t emuthreadid;
     pthread_create(&emuthreadid, NULL, loop, NULL);
     guiInit(argc, argv);
