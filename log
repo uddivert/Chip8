@@ -1,0 +1,118 @@
+==31330== Memcheck, a memory error detector
+==31330== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==31330== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==31330== Command: ./bin/chip8 -f roms/3-corax+.ch8
+==31330== 
+[?1049h[22;0;0t[1;24r(B[m[4l[?7h[?1h=[H[2JPress F1 to exit[2d(0[0mlqqqqqqqqk(B[3d(0[0mx(B[3;10H(0[0mx(B[4d(0[0mmqqqqqqqqj(B[2d(0[0m(B[6d(0[0mlqqqqqqqqqqqqqqqqqqqqqqqqqqqqk(B[7d(0[0mx(B[7;30H(0[0mx(B[8d(0[0mx(B[8;30H(0[0mx(B[9d(0[0mx(B[9;30H(0[0mx(B[10d(0[0mx(B[10;30H(0[0mx(B[11d(0[0mx(B[11;30H(0[0mx(B[12d(0[0mx(B[12;30H(0[0mx(B[13d(0[0mx(B[13;30H(0[0mx(B[14d(0[0mx(B[14;30H(0[0mx(B[15d(0[0mx(B[15;30H(0[0mx(B[16d(0[0mx(B[16;30H(0[0mx(B[17d(0[0mx(B[17;30H(0[0mx(B[18d(0[0mx(B[18;30H(0[0mx(B[19d(0[0mx(B[19;30H(0[0mx(B[20d(0[0mx(B[20;30H(0[0mx(B[21d(0[0mx(B[21;30H(0[0mx(B[22d(0[0mx(B[22;30H(0[0mx(B[23d(0[0mx(B[23;30H(0[0mx(B[24d(0[0mmqqqqqqqqqqqqqqqqqqqqqqqqqqqqj(B[6d(0[0m(B[6;32H(0[0mlqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(B[7;32H(0[0mx(B[8d(0[0mx(B[9d(0[0mx(B[10d(0[0mx(B[11d(0[0mmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(B[6;32H(0[0m(B[12d(0[0mlqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(B[13;32H(0[0mx(B[14d(0[0mx(B[15d(0[0mx(B[16d(0[0mx(B[17d(0[0mx(B[18d(0[0mx(B[19d(0[0mx(B[20d(0[0mmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(B[12;32H(0[0m(B[21;32H(0[0mlqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(B[22;32H(0[0mx(B[23d(0[0mx(B[24d(0[0mx(B[21d(0[0m(B[12;32H[K[13d [14d ██╗   ██╗██████╗ ██████╗ ██╗██╗   ██╗███████╗███[15;32H ██║   ██║██╔══██╗██╔══██╗██║██║   ██║██╔════╝██╔[16;32H ██║   ██║██║  ██║██║  ██║██║██║   ██║█████╗  ███[17;32H ██║   ██║██║  ██║██║  ██║██║╚██╗ ██╔╝██╔══╝  ██╔[18;32H ╚██████╔╝██████╔╝██████╔╝██║ ╚████╔╝ ███████╗██║[19;32H  ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚══════╝╚═╝[20;32H[K[20;15H[3;2H0x208[7;2HRegister 0: Ox00[8;2HRegister 1: Ox00[9;2HRegister 2: Ox00[10;2HRegister 3: Ox00[11;2HRegister 4: Ox00[12;2HRegister 5: Ox00[13;2HRegister 6: Ox00[14;2HRegister 7: Ox00[15;2HRegister 8: Ox00[16;2HRegister 9: Ox00[17;2HRegister A: Ox00[18;2HRegister B: Ox00[19;2HRegister C: Ox00[20;2HRegister D: Ox00[21;2HRegister E: Ox00[22;2HRegister F: Ox00[23;2HRegister I: Ox0000[7;33H000000: 00 E0 68 32 6B 1A A4 B1 D  ..h2k.....h:.[8;33H000016: 68 02 69 06 6A 0B 6B 01 6  h.i.j.k.e*f+.[9;33H000032: A4 AD D9 B4 A4 65 36 2B A  .....e6+.a..k[10;33H000048: D8 B4 A4 AD D9 B4 A4 61 4  .......aE*.e.[11;4H[24;1H[?1049l[23;0;0t[?1l>==31330== 
+==31330== HEAP SUMMARY:
+==31330==     in use at exit: 450,347 bytes in 604 blocks
+==31330==   total heap usage: 3,067 allocs, 2,463 frees, 704,297 bytes allocated
+==31330== 
+==31330== 9 bytes in 1 blocks are possibly lost in loss record 9 of 149
+==31330==    at 0x4841848: malloc (vg_replace_malloc.c:431)
+==31330==    by 0x4C123DE: strdup (strdup.c:42)
+==31330==    by 0x499D357: tparm_setup.lto_priv.0 (lib_tparm.c:657)
+==31330==    by 0x49A6EDC: _nc_tiparm (lib_tparm.c:1331)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:403)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:465)
+==31330==    by 0x4984D14: newterm_sp (lib_newterm.c:343)
+==31330==    by 0x4985BDD: newterm (lib_newterm.c:369)
+==31330==    by 0x497DD72: initscr (lib_initscr.c:93)
+==31330==    by 0x10BE58: main (main.c:47)
+==31330== 
+==31330== 24 bytes in 1 blocks are possibly lost in loss record 38 of 149
+==31330==    at 0x4841848: malloc (vg_replace_malloc.c:431)
+==31330==    by 0x4C7E656: tsearch (tsearch.c:337)
+==31330==    by 0x499D373: tparm_setup.lto_priv.0 (lib_tparm.c:658)
+==31330==    by 0x49A6EDC: _nc_tiparm (lib_tparm.c:1331)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:403)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:465)
+==31330==    by 0x4984D14: newterm_sp (lib_newterm.c:343)
+==31330==    by 0x4985BDD: newterm (lib_newterm.c:369)
+==31330==    by 0x497DD72: initscr (lib_initscr.c:93)
+==31330==    by 0x10BE58: main (main.c:47)
+==31330== 
+==31330== 80 bytes in 1 blocks are possibly lost in loss record 61 of 149
+==31330==    at 0x4841848: malloc (vg_replace_malloc.c:431)
+==31330==    by 0x4D92DE7: RegisterStubCallbacks (GLdispatch.c:426)
+==31330==    by 0x4D934CB: __glDispatchInit (GLdispatch.c:202)
+==31330==    by 0x4E5006D: __libGLInit (libopengl.c:42)
+==31330==    by 0x4004EED: call_init (dl-init.c:90)
+==31330==    by 0x4004EED: call_init (dl-init.c:27)
+==31330==    by 0x4004FDB: _dl_init (dl-init.c:137)
+==31330==    by 0x401B2CF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+==31330==    by 0x2: ???
+==31330==    by 0x1FFF00069A: ???
+==31330==    by 0x1FFF0006A6: ???
+==31330==    by 0x1FFF0006A9: ???
+==31330== 
+==31330== 80 bytes in 1 blocks are possibly lost in loss record 62 of 149
+==31330==    at 0x4841848: malloc (vg_replace_malloc.c:431)
+==31330==    by 0x4D92DE7: RegisterStubCallbacks (GLdispatch.c:426)
+==31330==    by 0x4D936FE: __glDispatchRegisterStubCallbacks (GLdispatch.c:445)
+==31330==    by 0x4E5007A: __libGLInit (libopengl.c:46)
+==31330==    by 0x4004EED: call_init (dl-init.c:90)
+==31330==    by 0x4004EED: call_init (dl-init.c:27)
+==31330==    by 0x4004FDB: _dl_init (dl-init.c:137)
+==31330==    by 0x401B2CF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+==31330==    by 0x2: ???
+==31330==    by 0x1FFF00069A: ???
+==31330==    by 0x1FFF0006A6: ???
+==31330==    by 0x1FFF0006A9: ???
+==31330== 
+==31330== 80 bytes in 1 blocks are possibly lost in loss record 63 of 149
+==31330==    at 0x4841848: malloc (vg_replace_malloc.c:431)
+==31330==    by 0x4D92DE7: RegisterStubCallbacks (GLdispatch.c:426)
+==31330==    by 0x4D936FE: __glDispatchRegisterStubCallbacks (GLdispatch.c:445)
+==31330==    by 0x4A1507A: __libGLInit (libgl.c:48)
+==31330==    by 0x4004EED: call_init (dl-init.c:90)
+==31330==    by 0x4004EED: call_init (dl-init.c:27)
+==31330==    by 0x4004FDB: _dl_init (dl-init.c:137)
+==31330==    by 0x401B2CF: ??? (in /usr/lib/ld-linux-x86-64.so.2)
+==31330==    by 0x2: ???
+==31330==    by 0x1FFF00069A: ???
+==31330==    by 0x1FFF0006A6: ???
+==31330==    by 0x1FFF0006A9: ???
+==31330== 
+==31330== 168 bytes in 1 blocks are possibly lost in loss record 92 of 149
+==31330==    at 0x48469B3: calloc (vg_replace_malloc.c:1554)
+==31330==    by 0x499D2CF: tparm_setup.lto_priv.0 (lib_tparm.c:655)
+==31330==    by 0x49A6EDC: _nc_tiparm (lib_tparm.c:1331)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:403)
+==31330==    by 0x4984D14: UnknownInlinedFun (lib_mvcur.c:465)
+==31330==    by 0x4984D14: newterm_sp (lib_newterm.c:343)
+==31330==    by 0x4985BDD: newterm (lib_newterm.c:369)
+==31330==    by 0x497DD72: initscr (lib_initscr.c:93)
+==31330==    by 0x10BE58: main (main.c:47)
+==31330== 
+==31330== 304 bytes in 1 blocks are possibly lost in loss record 108 of 149
+==31330==    at 0x48469B3: calloc (vg_replace_malloc.c:1554)
+==31330==    by 0x40115B2: calloc (rtld-malloc.h:44)
+==31330==    by 0x40115B2: allocate_dtv (dl-tls.c:369)
+==31330==    by 0x4012001: _dl_allocate_tls (dl-tls.c:628)
+==31330==    by 0x4BFC538: allocate_stack (allocatestack.c:429)
+==31330==    by 0x4BFC538: pthread_create@@GLIBC_2.34 (pthread_create.c:652)
+==31330==    by 0x10BEF4: main (main.c:61)
+==31330== 
+==31330== 304 bytes in 1 blocks are possibly lost in loss record 109 of 149
+==31330==    at 0x48469B3: calloc (vg_replace_malloc.c:1554)
+==31330==    by 0x40115B2: calloc (rtld-malloc.h:44)
+==31330==    by 0x40115B2: allocate_dtv (dl-tls.c:369)
+==31330==    by 0x4012001: _dl_allocate_tls (dl-tls.c:628)
+==31330==    by 0x4BFC538: allocate_stack (allocatestack.c:429)
+==31330==    by 0x4BFC538: pthread_create@@GLIBC_2.34 (pthread_create.c:652)
+==31330==    by 0x10BF71: loop (main.c:76)
+==31330==    by 0x4BFB9EA: start_thread (pthread_create.c:444)
+==31330==    by 0x4C7F653: clone (clone.S:100)
+==31330== 
+==31330== LEAK SUMMARY:
+==31330==    definitely lost: 0 bytes in 0 blocks
+==31330==    indirectly lost: 0 bytes in 0 blocks
+==31330==      possibly lost: 1,049 bytes in 8 blocks
+==31330==    still reachable: 449,298 bytes in 596 blocks
+==31330==         suppressed: 0 bytes in 0 blocks
+==31330== Reachable blocks (those to which a pointer was found) are not shown.
+==31330== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==31330== 
+==31330== For lists of detected and suppressed errors, rerun with: -s
+==31330== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)

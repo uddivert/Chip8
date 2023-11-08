@@ -35,8 +35,9 @@ int main(int argc, char* argv[])
     stack = initStack(sSize); // 64 BYTE SIZE
     c8.stack = *stack;
 
-    // Set timer to full
+    // Set timers to full
     c8.delayTimer = 0xFF;
+    c8.soundTimer = 0xFF;
 
     while((option = getopt(argc, argv, "f:F:")) != -1)
     { 
@@ -44,9 +45,7 @@ int main(int argc, char* argv[])
         {
             case 'f':
             case 'F':
-                initscr();
                 load_Memory(&c8, optarg);
-                // printMem(&c8);
                 break;
             case '?': //used for some unknown options
                 printf("%c is an unknown option\n", option);
@@ -60,8 +59,8 @@ int main(int argc, char* argv[])
     pthread_t emuthreadid;
     pthread_create(&emuthreadid, NULL, loop, NULL);
     guiInit(argc, argv);
-    destroyStack(stack);
     quitDeb();
+    destroyStack(stack);
     return EXIT_SUCCESS;
 } // main
 
@@ -87,10 +86,15 @@ void *loop(void *arg)
     pthread_join(timerthreadid, NULL);
     return EXIT_SUCCESS;
 }
+
+/*
+    Pay attentiion: timer's may be negative. Treat them as having a value of zero
+*/
 void *timer(void *arg) {
-    while (c8.delayTimer) {
+    while (c8.delayTimer || c8.soundTimer) {
         usleep (16666); // wait for 60 hz to be over
         c8.delayTimer -=1;
+        c8.soundTimer -=1;
     } // while
     return NULL;
 } // timer

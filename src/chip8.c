@@ -57,6 +57,8 @@ int load_Memory(struct chip8* c8, char* fileName)
     fread(c8 -> memory + 0x200, 1, st.st_size, fp);
     c8 -> progCounter = 0x200;
 
+    fclose(fp); // Close the file to prevent resource leak
+
    return 0;
 } // load_Memory
 

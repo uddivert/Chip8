@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="4863119728988000323">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="1" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;locale.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;locale.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="2" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;getopt.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;getopt.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="3" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="4" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;time.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="5" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/main.c" line="6" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;chip8.h&quot; not found." verbose="Include file: &quot;chip8.h&quot; not found.">
+            <location file="src/main.c" line="7" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;isa.h&quot; not found." verbose="Include file: &quot;isa.h&quot; not found.">
+            <location file="src/main.c" line="8" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;stack.h&quot; not found." verbose="Include file: &quot;stack.h&quot; not found.">
+            <location file="src/main.c" line="9" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;debugger.h&quot; not found." verbose="Include file: &quot;debugger.h&quot; not found.">
+            <location file="src/main.c" line="10" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;gui.h&quot; not found." verbose="Include file: &quot;gui.h&quot; not found.">
+            <location file="src/main.c" line="11" column="0"/>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="main" lineNumber="28"/>
+    <functiondecl functionName="loop" lineNumber="73"/>
+    <functiondecl functionName="timer" lineNumber="90"/>
+    <functiondecl functionName="fetch" lineNumber="102"/>
+    <functiondecl functionName="execute" lineNumber="112"/>
+    <functioncall functionName="CLOCKS_PER_SEC"/>
+    <functioncall functionName="EXIT_SUCCESS"/>
+    <functioncall functionName="LC_ALL"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="_f0"/>
+    <functioncall functionName="_f1"/>
+    <functioncall functionName="_f2"/>
+    <functioncall functionName="_f3"/>
+    <functioncall functionName="_f4"/>
+    <functioncall functionName="_f5"/>
+    <functioncall functionName="_f6"/>
+    <functioncall functionName="_f7"/>
+    <functioncall functionName="_f8"/>
+    <functioncall functionName="_f9"/>
+    <functioncall functionName="_fA"/>
+    <functioncall functionName="_fB"/>
+    <functioncall functionName="_fC"/>
+    <functioncall functionName="_fD"/>
+    <functioncall functionName="_fE"/>
+    <functioncall functionName="clock"/>
+    <functioncall functionName="cpuNull"/>
+    <functioncall functionName="debInit"/>
+    <functioncall functionName="debPrint"/>
+    <functioncall functionName="destroyStack"/>
+    <functioncall functionName="execute"/>
+    <functioncall functionName="fetch"/>
+    <functioncall functionName="getopt"/>
+    <functioncall functionName="guiFlag"/>
+    <functioncall functionName="guiInit"/>
+    <functioncall functionName="initStack"/>
+    <functioncall functionName="initscr"/>
+    <functioncall functionName="load_Memory"/>
+    <functioncall functionName="loop"/>
+    <functioncall functionName="optarg"/>
+    <functioncall functionName="printf"/>
+    <functioncall functionName="pthread_create"/>
+    <functioncall functionName="pthread_join"/>
+    <functioncall functionName="quitDeb"/>
+    <functioncall functionName="screenFill"/>
+    <functioncall functionName="setlocale"/>
+    <functioncall functionName="timer"/>
+    <functioncall functionName="usleep"/>
+  </FileInfo>
+</analyzerinfo>

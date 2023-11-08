@@ -33,7 +33,7 @@ void destroyStack(struct Stack* stack)
  * @param stack 
  * @return int bool true or false
  */
-int isFull(struct Stack* stack)
+int isFull(const struct Stack* stack)
 {
     return stack -> top == stack -> size -1;
 } // isFull
@@ -45,7 +45,7 @@ int isFull(struct Stack* stack)
  * @param stack 
  * @return int bool true or false
  */
-int isEmpty(struct Stack* stack)
+int isEmpty(const struct Stack* stack)
 {
     return stack -> top == -1;
 } // isEmpty 

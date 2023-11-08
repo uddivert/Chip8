@@ -1,0 +1,7 @@
+display global:[pixelGrid] call:[glBegin,glClear,glColor3f,glEnd,glFlush,glVertex2f,glutSwapBuffers] noreturn:[glVertex2f,glutSwapBuffers]
+init global:[pixelGrid] call:[glClearColor]
+screenFill global:[counter,pixelGrid]
+keyBoard global:[keyPress,keys] call:[printExtra]
+keyBoardUp global:[keyPress,keys]
+closeCallback call:[glutLeaveMainLoop,quitDeb] noreturn:[glutLeaveMainLoop]
+guiInit global:[guiFlag] call:[glutCloseFunc,glutCreateWindow,glutDisplayFunc,glutIdleFunc,glutInit,glutInitDisplayMode,glutInitWindowPosition,glutInitWindowSize,glutKeyboardFunc,glutKeyboardUpFunc,glutMainLoop,glutSetOption,init] noreturn:[glutMainLoop]

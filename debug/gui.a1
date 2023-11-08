@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="14650572244223910918">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;math.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;math.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/gui.c" line="1" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;gui.h&quot; not found." verbose="Include file: &quot;gui.h&quot; not found.">
+            <location file="src/gui.c" line="2" column="0"/>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="display" lineNumber="24"/>
+    <functiondecl functionName="init" lineNumber="56"/>
+    <functiondecl functionName="screenFill" lineNumber="68"/>
+    <functiondecl functionName="keyBoard" lineNumber="77"/>
+    <functiondecl functionName="keyBoardUp" lineNumber="87"/>
+    <functiondecl functionName="closeCallback" lineNumber="95"/>
+    <functiondecl functionName="guiInit" lineNumber="106"/>
+    <functioncall functionName="GLUT_ACTION_GLUTMAINLOOP_RETURNS"/>
+    <functioncall functionName="GLUT_ACTION_ON_WINDOW_CLOSE"/>
+    <functioncall functionName="GLUT_DOUBLE"/>
+    <functioncall functionName="GL_COLOR_BUFFER_BIT"/>
+    <functioncall functionName="GL_QUADS"/>
+    <functioncall functionName="closeCallback"/>
+    <functioncall functionName="display"/>
+    <functioncall functionName="glBegin"/>
+    <functioncall functionName="glClear"/>
+    <functioncall functionName="glClearColor"/>
+    <functioncall functionName="glColor3f"/>
+    <functioncall functionName="glEnd"/>
+    <functioncall functionName="glFlush"/>
+    <functioncall functionName="glVertex2f"/>
+    <functioncall functionName="glutCloseFunc"/>
+    <functioncall functionName="glutCreateWindow"/>
+    <functioncall functionName="glutDisplayFunc"/>
+    <functioncall functionName="glutIdleFunc"/>
+    <functioncall functionName="glutInit"/>
+    <functioncall functionName="glutInitDisplayMode"/>
+    <functioncall functionName="glutInitWindowPosition"/>
+    <functioncall functionName="glutInitWindowSize"/>
+    <functioncall functionName="glutKeyboardFunc"/>
+    <functioncall functionName="glutKeyboardUpFunc"/>
+    <functioncall functionName="glutLeaveMainLoop"/>
+    <functioncall functionName="glutMainLoop"/>
+    <functioncall functionName="glutSetOption"/>
+    <functioncall functionName="glutSwapBuffers"/>
+    <functioncall functionName="init"/>
+    <functioncall functionName="keyBoard"/>
+    <functioncall functionName="keyBoardUp"/>
+    <functioncall functionName="printExtra"/>
+    <functioncall functionName="quitDeb"/>
+  </FileInfo>
+</analyzerinfo>

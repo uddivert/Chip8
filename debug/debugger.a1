@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="6640801857372022131">
+        <error id="missingInclude" severity="information" msg="Include file: &quot;debugger.h&quot; not found." verbose="Include file: &quot;debugger.h&quot; not found.">
+            <location file="src/debugger.c" line="1" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;chip8.h&quot; not found." verbose="Include file: &quot;chip8.h&quot; not found.">
+            <location file="src/debugger.c" line="2" column="0"/>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="src/debugger.c:158:9" call-funcname="create_newwin" call-argnr="4" file="src/debugger.c" line="39" col="26" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="src/debugger.c:158:9" call-funcname="create_newwin" call-argnr="4" file="src/debugger.c" line="40" col="27" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/>  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="src/debugger.c:93:6" my-argnr="1" my-argname="c8" file="src/debugger.c" line="95" col="38" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="debInit" lineNumber="26"/>
+    <functiondecl functionName="loadBanner" lineNumber="55"/>
+    <functiondecl functionName="printExtra" lineNumber="70"/>
+    <functiondecl functionName="debPrint" lineNumber="93"/>
+    <functiondecl functionName="destroy_win" lineNumber="116"/>
+    <functiondecl functionName="quitDeb" lineNumber="142"/>
+    <functiondecl functionName="create_newwin" lineNumber="158"/>
+    <functiondecl functionName="hexdump" lineNumber="176"/>
+    <functioncall functionName="TRUE"/>
+    <functioncall functionName="box"/>
+    <functioncall functionName="cbreak"/>
+    <functioncall functionName="create_newwin"/>
+    <functioncall functionName="delwin"/>
+    <functioncall functionName="destroy_win"/>
+    <functioncall functionName="endwin"/>
+    <functioncall functionName="getmaxyx"/>
+    <functioncall functionName="hexdump"/>
+    <functioncall functionName="initscr"/>
+    <functioncall functionName="keypad"/>
+    <functioncall functionName="loadBanner"/>
+    <functioncall functionName="mvwprintw"/>
+    <functioncall functionName="newwin"/>
+    <functioncall functionName="noecho"/>
+    <functioncall functionName="printw"/>
+    <functioncall functionName="refresh"/>
+    <functioncall functionName="stdscr"/>
+    <functioncall functionName="va_end"/>
+    <functioncall functionName="va_start"/>
+    <functioncall functionName="varRegDump"/>
+    <functioncall functionName="vsnprintf"/>
+    <functioncall functionName="wborder"/>
+    <functioncall functionName="wprintw"/>
+    <functioncall functionName="wrefresh"/>
+  </FileInfo>
+</analyzerinfo>

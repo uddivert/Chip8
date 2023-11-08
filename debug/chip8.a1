@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="2104542353517617066">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/chip8.c" line="1" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;errno.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/chip8.c" line="2" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;string.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;string.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/chip8.c" line="3" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;sys/stat.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;sys/stat.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/chip8.c" line="4" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;curses.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;curses.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/chip8.c" line="5" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;chip8.h&quot; not found." verbose="Include file: &quot;chip8.h&quot; not found.">
+            <location file="src/chip8.c" line="6" column="0"/>
+        </error>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="src/chip8.c:42:5" my-argnr="2" my-argname="fileName" file="src/chip8.c" line="45" col="16" value="0"/>
+    <unsafe-usage my-id="src/chip8.c:73:5" my-argnr="1" my-argname="c8" file="src/chip8.c" line="75" col="12" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="src/chip8.c:42:5" my-argnr="2" my-argname="fileName" file="src/chip8.c" line="45" col="16" value="0"/>
+    <unsafe-usage my-id="src/chip8.c:73:5" my-argnr="1" my-argname="c8" file="src/chip8.c" line="75" col="12" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="load_Memory" lineNumber="42"/>
+    <functiondecl functionName="varRegDump" lineNumber="73"/>
+    <functioncall functionName="errno"/>
+    <functioncall functionName="fclose"/>
+    <functioncall functionName="fopen"/>
+    <functioncall functionName="fread"/>
+    <functioncall functionName="memcpy"/>
+    <functioncall functionName="perror"/>
+    <functioncall functionName="stat"/>
+  </FileInfo>
+</analyzerinfo>

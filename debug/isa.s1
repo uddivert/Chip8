@@ -1,0 +1,17 @@
+cpuNull
+_f0 call:[peep,pop] noreturn:[pop]
+_f1
+_f2 call:[push]
+_f3
+_f4
+_f5
+_f6
+_f7
+_f8
+_f9
+_fA
+_fB
+_fC call:[rand,srand,time]
+_fD
+_fE call:[case]
+_fF call:[case]

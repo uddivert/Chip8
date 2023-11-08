@@ -12,6 +12,11 @@ LDFLAGS  := -Llib				# -L is a linker flag
 LDLIBS   := -lm -lncurses -lGL -lGLU -lglut	-lpthread# Left empty if no libs are needed
 MACROS   := -g -D DEBUG 
 
+
+VALGRIND := valgrind
+VALGRIND_FLAGS := --leak-check=full
+LOG_FILE := log
+
 .PHONY: all clean
 
 all: $(EXE)
@@ -30,5 +35,9 @@ clean:
 
 run:
 	$(EXE) -f roms/3-corax+.ch8
-debug:
-	ddd --args  $(EXE) -f roms/Logo.ch8
+
+valgrind: $(EXE)
+	$(VALGRIND) $(VALGRIND_FLAGS) ./$(EXE) -f roms/3-corax+.ch8 > $(LOG_FILE) 2>&1
+
+cppcheck:
+	cppcheck --enable=all --cppcheck-build-dir=debug src

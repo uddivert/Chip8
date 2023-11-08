@@ -1,0 +1,5 @@
+main global:[c8,stack] call:[debInit,destroyStack,getopt,guiInit,initStack,initscr,load_Memory,printf,pthread_create,quitDeb,setlocale]
+loop global:[c8] call:[debPrint,execute,fetch,pthread_create,pthread_join,screenFill]
+timer global:[c8] call:[usleep]
+fetch global:[c8]
+execute global:[c8,cpuTable] call:[clock,usleep] noreturn:[usleep]

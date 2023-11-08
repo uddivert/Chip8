@@ -2,7 +2,8 @@
 #include "chip8.h"
 
 WINDOW *pCounter;
-WINDOW *Registers;
+WINDOW *registers;
+WINDOW *timers;
 WINDOW *hexWin;
 WINDOW *banner;
 WINDOW *extra;
@@ -31,13 +32,13 @@ void debInit()
 					 * everty thing to me 		*/
 	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
 
-	printw("Press F1 to exit");
+	printw("Press F1 to exit"); // TODO
 	refresh();
 	getmaxyx(stdscr,width, height);
 
 
 	pCounter = create_newwin(3, 10, 1, 0);
-	Registers = create_newwin(19, 30, 5, 0);
+	registers = create_newwin(19, 30, 5, 0);
 	hexWin = create_newwin(6, 58, 5, 31);
 	banner = create_newwin(9, 64, 11,31);
 	extra= create_newwin(height - 11, 64, 20,31);
@@ -96,15 +97,15 @@ void debPrint(struct chip8* c8)
 	
 	for (int i = 0; i < 16; i ++) 
 	{
-		mvwprintw(Registers, 1 + i, 1, "Register %X: Ox%.02X", i, varRegDump(c8, i));
+		mvwprintw(registers, 1 + i, 1, "Register %X: Ox%.02X", i, varRegDump(c8, i));
 	} // for
 
     hexdump(c8 -> memory + c8 -> progCounter, 64); // show hexDump
 	loadBanner();
 
-	mvwprintw(Registers, 17, 1, "Register I: Ox%.04X", c8 -> regI);
+	mvwprintw(registers, 17, 1, "Register I: Ox%.04X", c8 -> regI);
 	wrefresh(pCounter);
-	wrefresh(Registers);
+	wrefresh(registers);
 	wrefresh(hexWin);
 } // debPrint
 
@@ -142,7 +143,7 @@ void destroy_win(WINDOW *local_win)
 void quitDeb()
 {
 	destroy_win(pCounter);
-	destroy_win(Registers);
+	destroy_win(registers);
     endwin();
 } // quitDeb
 

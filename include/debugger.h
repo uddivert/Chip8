@@ -5,7 +5,8 @@
 #ifndef DEBUGGER_H 
 #define DEBUGGER_H 
 extern WINDOW *pCounter;
-extern WINDOW *Registers;
+extern WINDOW *registers;
+extern WINDOW *timers;
 extern WINDOW *hexWin;
 extern WINDOW *banner;
 extern WINDOW *extra;

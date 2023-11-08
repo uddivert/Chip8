@@ -1,0 +1,2 @@
+load_Memory global:[fonts] call:[fclose,fopen,fread,memcpy,perror,sizeof,stat]
+varRegDump

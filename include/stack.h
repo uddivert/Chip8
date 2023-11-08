@@ -11,8 +11,8 @@ struct Stack {
 
 struct Stack* initStack(uint8_t size);
 void destroyStack(struct Stack* stack);
-int isFull(struct Stack* stack); 
-int isEmpty(struct Stack* stack);
+int isFull(const struct Stack* stack); 
+int isEmpty(const struct Stack* stack);
 int push(struct Stack* stack, int item);
 int pop(struct Stack* stack);
 int peep(struct Stack* stack); 

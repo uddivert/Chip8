@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<analyzerinfo hash="4735064508434957854">
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;GL/glut.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;GL/glut.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/test.c" line="1" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/test.c" line="2" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;pthread.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="src/test.c" line="3" column="0"/>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="display1" lineNumber="5"/>
+    <functiondecl functionName="main1" lineNumber="12"/>
+    <functioncall functionName="GLUT_DOUBLE"/>
+    <functioncall functionName="GL_COLOR_BUFFER_BIT"/>
+    <functioncall functionName="display1"/>
+    <functioncall functionName="glClear"/>
+    <functioncall functionName="glClearColor"/>
+    <functioncall functionName="glutCreateWindow"/>
+    <functioncall functionName="glutDisplayFunc"/>
+    <functioncall functionName="glutInit"/>
+    <functioncall functionName="glutInitDisplayMode"/>
+    <functioncall functionName="glutInitWindowSize"/>
+    <functioncall functionName="glutMainLoop"/>
+    <functioncall functionName="glutSwapBuffers"/>
+  </FileInfo>
+</analyzerinfo>
