@@ -484,6 +484,12 @@ void _fF(struct chip8 *c8) {
             }
             break;
         case(0x65):
+            /**
+             * @brief LD Vx, [I]
+             * Read registers V0 through Vx from memory starting at location I.
+             * The interpreter reads values from memory starting at location I
+             * into registers V0 through Vx.
+             */
             for (int i = 0; i < index; i ++) {
                 c8->memory[c8->regI + i] = c8 -> varReg[i];
             }

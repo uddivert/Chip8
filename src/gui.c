@@ -1,5 +1,6 @@
 #include <math.h>
 #include "gui.h"
+#include "debugger.h"
 
 unsigned char keys[16] = {
     '1', '2', '3', '4',
