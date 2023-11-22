@@ -232,10 +232,9 @@ void _f8(struct chip8 *c8)
          * then VF is set to 1, otherwise 0. Then Vx is divided by 2.
          */
         case 0x6:
-            c8 -> varReg[0xF] = (c8 -> varReg[x] & 0xF) == 1 ?  1 : 0;
-            if (c8 -> varReg[0xF]) {
-                c8 -> varReg[x] = c8 -> varReg[x] >> 1;
-            } // if
+            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
+            // Right shift Vx by 1
+            c8->varReg[x] >>= 1;
             break;
 
         /**
@@ -257,10 +256,9 @@ void _f8(struct chip8 *c8)
          * Then Vx is multiplied by 2.
          */
         case 0xE:
-            c8 -> varReg[0xF] = ((c8 -> varReg[x] >> 4) & 0xF) == 1 ?  1 : 0;
-            if (c8 -> varReg[0xF]) {
-                c8 -> varReg[x] = c8 -> varReg[x] << 1;
-            } // if
+            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
+            // Left shift Vx by 1
+            c8->varReg[x] <<= 1;
             break;
 
         default:
@@ -464,13 +462,10 @@ void _fF(struct chip8 *c8) {
              * and places the hundreds digit in memory at location in I, 
              * the tens digit at location I+1, and the ones digit at location I+2.
              */
-            int hundreds = c8->varReg[index] / 100;
-            int tens = (c8->varReg[index] / 10) % 10;
-            int ones = c8->varReg[index] % 10;
-
-            c8->memory[c8->regI] = hundreds;
-            c8->memory[c8->regI + 1] = tens;
-            c8->memory[c8->regI + 2] = ones;
+            int bcd = c8->varReg[index];
+            c8->memory[c8->regI] = bcd / 100;        // Hundreds digit
+            c8->memory[c8->regI + 1] = (bcd / 10) % 10; // Tens digit
+            c8->memory[c8->regI + 2] = bcd % 10;       // Ones digit
             break;
         case(0x55):
             /**
