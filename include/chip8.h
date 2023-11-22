@@ -19,6 +19,7 @@ extern uint16_t fonts[80];
 int load_Memory(struct chip8* c8, char* fileName);
 //int load_keys(char *fileName);
 int varRegDump(struct chip8* c8, int i); 
+int getFontAddr(struct chip8* c8, int i);
 
 /*
 void chipStack(uint16_t addr);

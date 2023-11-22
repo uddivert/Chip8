@@ -16,7 +16,7 @@ int keyPress[16] = {
 
 int pixelGrid[32][64]; // Represents the Chip-8 screen, 64x32 pixels
 int counter = 0;
-int _Atomic guiFlag = 0;
+int _Atomic guiFlag = 0; // can be modified by two threads simultaneously
 /**
  * @brief Displays the gui
  * 
@@ -74,6 +74,13 @@ void screenFill(uint8_t grid[][64]) {
     counter ++;
 }
 
+/**
+ * @brief Sets keyPress to 1 if they key is pressed
+ * 
+ * @param key Key Being pressed
+ * @param x unused
+ * @param y unused
+ */
 void keyBoard(unsigned char key, int x, int y)
 {
     for (int i = 0; i < 16; i ++) {
@@ -84,12 +91,19 @@ void keyBoard(unsigned char key, int x, int y)
     }
 }
 
+/**
+ * @brief Sets keyPress to 0 if key is no longer being pressed
+ * 
+ * @param key Key being pressed
+ * @param x 
+ * @param y 
+ */
 void keyBoardUp(unsigned char key, int x, int y) {
     for (int i = 0; i < 16; i ++) {
         if (key == keys[i]) {
             keyPress[i] = 0;
         }
-    }
+    } 
 }
 
 void closeCallback(void) {

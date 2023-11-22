@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo hash="4863119728988000323">
+<analyzerinfo hash="16198143678827171852">
         <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;unistd.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
             <location file="src/main.c" line="1" column="0"/>
         </error>
@@ -35,10 +35,10 @@
         </error>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="main" lineNumber="28"/>
-    <functiondecl functionName="loop" lineNumber="73"/>
-    <functiondecl functionName="timer" lineNumber="90"/>
-    <functiondecl functionName="fetch" lineNumber="102"/>
-    <functiondecl functionName="execute" lineNumber="112"/>
+    <functiondecl functionName="loop" lineNumber="72"/>
+    <functiondecl functionName="timer" lineNumber="93"/>
+    <functiondecl functionName="fetch" lineNumber="106"/>
+    <functiondecl functionName="execute" lineNumber="116"/>
     <functioncall functionName="CLOCKS_PER_SEC"/>
     <functioncall functionName="EXIT_SUCCESS"/>
     <functioncall functionName="LC_ALL"/>
@@ -69,7 +69,6 @@
     <functioncall functionName="guiFlag"/>
     <functioncall functionName="guiInit"/>
     <functioncall functionName="initStack"/>
-    <functioncall functionName="initscr"/>
     <functioncall functionName="load_Memory"/>
     <functioncall functionName="loop"/>
     <functioncall functionName="optarg"/>

@@ -74,3 +74,9 @@ int varRegDump(struct chip8* c8, int i)
 {
     return c8 -> varReg[i];
 } // varRegDump
+
+int getFontAddr(struct chip8* c8, int i) {
+    uint16_t fontAddress = 0x050; // Base address where fonts are loaded
+    uint16_t fontOffset = i * 5;  // Each font is 5 bytes long (5 * sizeof(uint8_t))
+    return fontAddress + fontOffset;
+}
