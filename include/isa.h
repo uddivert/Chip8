@@ -19,4 +19,5 @@ void _fB(struct chip8* c8);
 void _fC(struct chip8* c8);
 void _fD(struct chip8 *c8); 
 void _fE(struct chip8 *c8); 
+void _fF(struct chip8 *c8); 
 #endif /*ISA_H*/

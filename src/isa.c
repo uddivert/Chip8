@@ -394,7 +394,8 @@ void _fE(struct chip8 *c8) {
  * @param c8 
  */
 void _fF(struct chip8 *c8) { 
-    uint8_t index = (c8->opcode & 0x0F00) >> 8;
+    int index = (c8 -> opcode >> 8) & 0xF;
+    printExtra("%x",index);
     switch(c8 -> opcode & 0x00FF) {
         case(0x07):
             /**
@@ -415,7 +416,7 @@ void _fF(struct chip8 *c8) {
                 if (keyPress[i]) {
                     c8 -> varReg[index] = keys[i];
                 } // if
-                if (i == 15) {
+                if (i == 16) {
                     i = 0;
                 } // infinite loop
             } // for
@@ -443,7 +444,7 @@ void _fF(struct chip8 *c8) {
              * The values of I and Vx are added,
              * and the results are stored in I.
              */
-            c8 -> regI = c8 -> regI + c8 -> varReg[index];
+            c8 -> regI += c8 -> varReg[index];
             break;
         case(0x29):
             /**
@@ -474,8 +475,9 @@ void _fF(struct chip8 *c8) {
              * The interpreter copies the values of registers V0 through Vx into memory,
              * starting at the address in I.
              */
-            for (int i = 0; i < index; i ++) {
-                c8 -> varReg[i] = c8->memory[c8->regI + i];
+            for (int i = 0; i <= index; i ++) {
+                //c8 -> varReg[i] = c8->memory[c8->regI + i];
+                c8->memory[c8->regI + i] = c8->varReg[i];
             }
             break;
         case(0x65):

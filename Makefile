@@ -37,7 +37,7 @@ run:
 	$(EXE) -f roms/3-corax+.ch8
 
 valgrind: $(EXE)
-	$(VALGRIND) $(VALGRIND_FLAGS) ./$(EXE) -f roms/3-corax+.ch8 > $(LOG_FILE) 2>&1
+	$(VALGRIND) $(VALGRIND_FLAGS) ./$(EXE) -f roms/testing.ch8 > $(LOG_FILE) 2>&1
 
 cppcheck:
 	cppcheck --enable=all --cppcheck-build-dir=debug src
