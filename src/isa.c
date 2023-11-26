@@ -33,13 +33,16 @@ void cpuNull(struct chip8* c8)
  */
 void _f0(struct chip8* c8)
 {
-    if ((c8 -> opcode & 0xF)== 0)  // if 00E0 CLS
-    {
-        
-    } else {
-        c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
-        pop(&c8 -> stack);
-    } // else
+    int cmd = c8 -> opcode & 0xFFF;  // if 00E0 CLS
+    switch (cmd) {
+        case 0x0E0:
+            // need to implement
+            break;
+        case 0x0EE:
+            c8 -> progCounter = peep(&c8 -> stack); // 00EE RET
+            pop(&c8 -> stack);
+            break;
+    } // switch
 } // ret
 
 /**
@@ -64,8 +67,10 @@ void _f1(struct chip8* c8)
 void _f2(struct chip8* c8) 
 {
     int addr = c8 -> opcode & 0xFFF;
-    push(&c8 -> stack, c8 -> progCounter); 
-    c8 -> progCounter = addr;
+    if (!isFull(&c8 -> stack)) {
+        push(&c8 -> stack, c8 -> progCounter); 
+        c8 -> progCounter = addr;
+    } // if 
 } // Call
 
 /**
@@ -318,7 +323,7 @@ void _fC(struct chip8* c8)
     int index = (c8 -> opcode >> 8) & 0xF;
     int val = c8 -> opcode & 0xFF;
     srand(time(NULL));
-    int random = rand() % 255;
+    int random = rand() % 256;
     c8 -> varReg[index] = random & val;
 } // RND
 
@@ -463,11 +468,13 @@ void _fF(struct chip8 *c8) {
              * and places the hundreds digit in memory at location in I, 
              * the tens digit at location I+1, and the ones digit at location I+2.
              */
-            int bcd = c8->varReg[index];
-            c8->memory[c8->regI] = bcd / 100;        // Hundreds digit
-            c8->memory[c8->regI + 1] = (bcd / 10) % 10; // Tens digit
-            c8->memory[c8->regI + 2] = bcd % 10;       // Ones digit
-            break;
+            {
+                int bcd = c8->varReg[index];
+                c8->memory[c8->regI] = bcd / 100;        // Hundreds digit
+                c8->memory[c8->regI + 1] = (bcd / 10) % 10; // Tens digit
+                c8->memory[c8->regI + 2] = bcd % 10;       // Ones digit
+                break;
+            }
         case(0x55):
             /**
              * @brief  LD [I], Vx
