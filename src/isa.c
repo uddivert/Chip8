@@ -487,7 +487,7 @@ void _fF(struct chip8 *c8) {
              * The interpreter reads values from memory starting at location I
              * into registers V0 through Vx.
              */
-            for (int i = 0; i < index; i ++) {
+            for (int i = 0; i <= index; i ++) {
                 c8->memory[c8->regI + i] = c8 -> varReg[i];
             }
             break;
