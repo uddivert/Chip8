@@ -215,8 +215,10 @@ void _f8(struct chip8 *c8)
          * and stored in Vx.
          */
         case 0x4:
-            c8 -> varReg[0xF] = (c8 -> varReg[y] + c8 -> varReg[x]) > 256;
+            c8->varReg[0xF] = 0; // Reset VF
             c8 -> varReg[x] = c8 -> varReg[y] + c8 -> varReg[x];
+            c8 ->varReg[x] &= 0xFF; // Keep only the lowest 8 bits
+            c8 -> varReg[0xF] = (c8 -> varReg[x]) > 256;
             break;
 
         /**
@@ -226,8 +228,8 @@ void _f8(struct chip8 *c8)
          * Then Vy is subtracted from Vx, and the results stored in Vx.
          */
         case 0x5:
-            c8 -> varReg[0xF] = c8 -> varReg[x] > c8 -> varReg[y] ? 1 : 0;
             c8 -> varReg[x] = c8 -> varReg[x] - c8 -> varReg[y];
+            c8 -> varReg[0xF] = c8 -> varReg[x] > c8 -> varReg[y] ? 1 : 0;
             break;
         
         /**
@@ -249,8 +251,8 @@ void _f8(struct chip8 *c8)
          * Then Vx is subtracted from Vy, and the results stored in Vx. 
          */
         case 0x7:
-            c8 -> varReg[0xF] = c8 -> varReg[x] > c8 -> varReg[y] ? 1 : 0;
             c8 -> varReg[x] = c8 -> varReg[y] - c8 -> varReg[x];
+            c8 -> varReg[0xF] = c8 -> varReg[y] > c8 -> varReg[x] ? 1 : 0;
             break;
         
         /**
@@ -261,8 +263,8 @@ void _f8(struct chip8 *c8)
          * Then Vx is multiplied by 2.
          */
         case 0xE:
-            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
             // Left shift Vx by 1
+            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
             c8->varReg[x] <<= 1;
             break;
 

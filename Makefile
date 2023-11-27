@@ -33,8 +33,11 @@ $(BIN_DIR) $(OBJ_DIR):
 clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
-run:
+corax:
 	$(EXE) -f roms/3-corax+.ch8
+
+flags:
+	$(EXE) -f roms/4-flags.ch8
 
 valgrind: $(EXE)
 	$(VALGRIND) $(VALGRIND_FLAGS) ./$(EXE) -f roms/testing.ch8 > $(LOG_FILE) 2>&1
