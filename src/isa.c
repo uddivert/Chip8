@@ -215,11 +215,12 @@ void _f8(struct chip8 *c8)
          * and stored in Vx.
          */
         case 0x4:
-            c8->varReg[0xF] = 0; // Reset VF
-            c8 -> varReg[x] = c8 -> varReg[y] + c8 -> varReg[x];
-            c8 ->varReg[x] &= 0xFF; // Keep only the lowest 8 bits
-            c8 -> varReg[0xF] = (c8 -> varReg[x]) > 256;
+        {
+            int temp = c8 -> varReg[x];
+            c8 -> varReg[x] = (c8 -> varReg[y] + c8 -> varReg[x]) & 0xFF;
+            c8 -> varReg[0xF] = c8 -> varReg[x] > temp ? 0 : 1;
             break;
+        } // case
 
         /**
          * @brief 8xy5 - SUB Vx, Vy
@@ -227,10 +228,12 @@ void _f8(struct chip8 *c8)
          * If Vx > Vy, then VF is set to 1, otherwise 0. 
          * Then Vy is subtracted from Vx, and the results stored in Vx.
          */
-        case 0x5:
+        case 0x5: {
+            int temp = c8 -> varReg[x];
             c8 -> varReg[x] = c8 -> varReg[x] - c8 -> varReg[y];
-            c8 -> varReg[0xF] = c8 -> varReg[x] > c8 -> varReg[y] ? 1 : 0;
+            c8 -> varReg[0xF] = c8 -> varReg[x] > temp ? 0 : 1;
             break;
+        } // case
         
         /**
          * @brief  8xy6 - SHR Vx {, Vy}
@@ -238,11 +241,13 @@ void _f8(struct chip8 *c8)
          * If the least-significant bit of Vx is 1,
          * then VF is set to 1, otherwise 0. Then Vx is divided by 2.
          */
-        case 0x6:
-            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
+        case 0x6: {
             // Right shift Vx by 1
-            c8->varReg[x] >>= 1;
+            uint8_t new_vf = c8 -> varReg[(c8 -> opcode & 0x0F0) >> 4] & 0x1;
+            c8 -> varReg[(c8 -> opcode & 0x0F00) >> 8] = c8 -> varReg[(c8 -> opcode & 0x0F0) >> 4] >> 1;
+            c8 -> varReg[0xf] = new_vf;
             break;
+        } // case
 
         /**
          * @brief 8xy7 - SUBN Vx, Vy
@@ -262,11 +267,13 @@ void _f8(struct chip8 *c8)
          * then VF is set to 1, otherwise to 0. 
          * Then Vx is multiplied by 2.
          */
-        case 0xE:
+        case 0xE: {
             // Left shift Vx by 1
-            c8->varReg[0xF] = c8->varReg[x] & 0x1; // Check the least significant bit
-            c8->varReg[x] <<= 1;
+            uint8_t new_vf = (c8 -> varReg[(c8 -> opcode & 0x0f0)>>4] >> 7) & 0x01;
+            c8 -> varReg[(c8 -> opcode & 0x0F00) >> 8] = c8 -> varReg[(c8 -> opcode & 0x0F0) >> 4] << 1;
+            c8 -> varReg[0xf] = new_vf;
             break;
+        } // case
 
         default:
             break;
