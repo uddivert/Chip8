@@ -492,7 +492,6 @@ void _fF(struct chip8 *c8) {
              * starting at the address in I.
              */
             for (int i = 0; i <= index; i ++) {
-               // c8 -> varReg[i] = c8->memory[c8->regI + i];
                 c8->memory[c8->regI + i] = c8->varReg[i];
             }
             break;
@@ -504,7 +503,6 @@ void _fF(struct chip8 *c8) {
              * into registers V0 through Vx.
              */
             for (int i = 0; i <= index; i ++) {
-                //c8->memory[c8->regI + i] = c8 -> varReg[i];
                 c8 -> varReg[i] = c8->memory[c8->regI + i];
             }
             break;

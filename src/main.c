@@ -59,7 +59,6 @@ int main(int argc, char* argv[])
     pthread_t emuthreadid;
     pthread_create(&emuthreadid, NULL, loop, NULL);
     guiInit(argc, argv);
-    quitDeb();
     destroyStack(stack);
     return EXIT_SUCCESS;
 } // main

@@ -108,6 +108,7 @@ void keyBoardUp(unsigned char key, int x, int y) {
 }
 
 void closeCallback(void) {
+    guiFlag = 0;
     quitDeb();
     glutLeaveMainLoop();
 }

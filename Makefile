@@ -39,6 +39,9 @@ corax:
 flags:
 	$(EXE) -f roms/4-flags.ch8
 
+testing:
+	$(EXE) -f roms/F555Test.ch8
+
 valgrind: $(EXE)
 	$(VALGRIND) $(VALGRIND_FLAGS) ./$(EXE) -f roms/testing.ch8 > $(LOG_FILE) 2>&1
 
