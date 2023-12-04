@@ -1,7 +1,0 @@
-chip8.a1::src/chip8.c
-debugger.a1::src/debugger.c
-gui.a1::src/gui.c
-isa.a1::src/isa.c
-main.a1::src/main.c
-stack.a1::src/stack.c
-test.a1::src/test.c

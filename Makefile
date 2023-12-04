@@ -39,6 +39,12 @@ corax:
 flags:
 	$(EXE) -f roms/4-flags.ch8
 
+quirks:
+	$(EXE) -f roms/5-quirks.ch8
+
+keypad:
+	$(EXE) -f roms/6-keypad.ch8
+
 testing:
 	$(EXE) -f roms/F555Test.ch8
 

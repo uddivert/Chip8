@@ -7,7 +7,7 @@
 #include "chip8.h"
 #include "isa.h"
 #include "stack.h"
-#include "debugger.h"
+//#include "debugger.h"
 #include "gui.h"
 
 struct chip8 c8;
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
             break;
         } // switch  
     } // while
-    debInit();
+    //debInit();
     pthread_t emuthreadid;
     pthread_create(&emuthreadid, NULL, loop, NULL);
     guiInit(argc, argv);
@@ -76,7 +76,7 @@ void *loop(void *arg)
     {
         fetch();
         execute();
-        debPrint(&c8);
+      //  debPrint(&c8);
         screenFill(c8.display);
         while (!guiFlag) {
 

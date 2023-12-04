@@ -36,7 +36,11 @@ void _f0(struct chip8* c8)
     int cmd = c8 -> opcode & 0xFFF;  // if 00E0 CLS
     switch (cmd) {
         case 0x0E0:
-            // need to implement
+            for (int i = 0; i < 32; i ++) {
+                for (int j = 0; j < 64; j ++) {
+                    c8 -> display[i][j] = 0;
+                } // for
+            } // for 
             break;
         case 0x0EE:
             c8 -> progCounter = peep(&c8 -> stack); // 00EE RET

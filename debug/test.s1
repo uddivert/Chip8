@@ -1,2 +1,0 @@
-display1 call:[glClear,glutSwapBuffers] noreturn:[glutSwapBuffers]
-main1 call:[glClearColor,glutCreateWindow,glutDisplayFunc,glutInit,glutInitDisplayMode,glutInitWindowSize,glutMainLoop]

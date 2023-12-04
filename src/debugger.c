@@ -149,10 +149,12 @@ void destroy_win(WINDOW *local_win)
  */
 void quitDeb()
 {
-	destroy_win(pCounter);
-	destroy_win(registers);
+    if (pCounter != NULL) {
+        destroy_win(pCounter);
+    } if (registers != NULL) {
+        destroy_win(registers);
+    }
     endwin();
-    exit(0);
 } // quitDeb
 
 /**

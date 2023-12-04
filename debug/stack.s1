@@ -1,7 +1,0 @@
-initStack call:[malloc,sizeof]
-destroyStack call:[free] noreturn:[free]
-isFull
-isEmpty
-push call:[isFull]
-pop call:[isEmpty]
-peep
