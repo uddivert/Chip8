@@ -45,6 +45,12 @@ quirks:
 keypad:
 	$(EXE) -f roms/6-keypad.ch8
 
+zero:
+	$(EXE) -f roms/zero.ch8
+
+trip8:
+	$(EXE) -f roms/trip8.ch8
+
 testing:
 	$(EXE) -f roms/F555Test.ch8
 

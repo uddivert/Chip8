@@ -413,7 +413,6 @@ void _fE(struct chip8 *c8) {
  */
 void _fF(struct chip8 *c8) { 
     int index = (c8 -> opcode >> 8) & 0xF;
-    printExtra("%x",index);
     switch(c8 -> opcode & 0x00FF) {
         case(0x07):
             /**

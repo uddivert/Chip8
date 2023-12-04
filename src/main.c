@@ -90,6 +90,7 @@ void *loop(void *arg)
     Pay attentiion: timer's may be negative. Treat them as having a value of zero
 */
 void *timer(void *arg) {
+    sleep(5);
     while (c8.delayTimer || c8.soundTimer) {
         usleep (16666); // wait for 60 hz to be over
         c8.delayTimer -=1;

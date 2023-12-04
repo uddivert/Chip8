@@ -2,12 +2,20 @@
 #include "gui.h"
 #include "debugger.h"
 
-unsigned char keys[16] = {
+unsigned char keysAct[16] = {
     '1', '2', '3', '4',
     'q', 'w', 'e', 'r',
     'a', 's', 'd', 'f',
     'z', 'x', 'c', 'v'
 };
+
+unsigned char keys[16] = {
+    '1', '2', '3', 'C',
+    '4', '5', '6', 'D',
+    '7', '8', '9', 'E',
+    'A', '0', 'B', 'F'
+};
+
 int keyPress[16] = {
     0, 0, 0, 0,
     0, 0, 0, 0,
@@ -85,8 +93,9 @@ void screenFill(uint8_t grid[][64]) {
 void keyBoard(unsigned char key, int x, int y)
 {
     for (int i = 0; i < 16; i ++) {
-        if (key == keys[i]) {
-            printExtra("%c", key);
+        if (key == keysAct[i]) {
+            printf("%c", keys[i]);
+            fflush(stdout);
             keyPress[i] = 1;
         }
     }
@@ -101,7 +110,7 @@ void keyBoard(unsigned char key, int x, int y)
  */
 void keyBoardUp(unsigned char key, int x, int y) {
     for (int i = 0; i < 16; i ++) {
-        if (key == keys[i]) {
+        if (key == keysAct[i]) {
             keyPress[i] = 0;
         }
     } 
